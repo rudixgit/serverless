@@ -2,6 +2,10 @@ org: rudixlab
 app: myapp
 
 service: dynamo
+plugins:
+    - serverless-api-compression
+    - serverless-webpack
+    - serverless-offline
 
 provider:
     name: aws
@@ -22,6 +26,7 @@ provider:
 functions:
     app:
         handler: server.handler
+        memorySize: 512
         events:
             - http: ANY /
             - http: 'ANY {proxy+}'
