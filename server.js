@@ -31,13 +31,29 @@ app.get('/:id', function (req, res) {
     )
 })
 app.post('/', function (req, res) {
-    db.put({ TableName: 'ddb', Item: req.body }, function (err, data) {
-        if (err) console.log(err)
-        else console.log(data)
-        res.json({})
+    const json = {
+        ...req.body,
+        id: req.body.id ? req.body.id : new Date().getTime().toString(),
+    }
+    console.log(json)
+
+    db.put({ TableName: 'ddb', Item: json }, function (err, data) {
+        res.json({ id: json.id })
     })
 })
 if (!process.env.LAMBDA_RUNTIME_DIR) {
+    const request = require('request')
+    var options = {
+        uri: 'http://localhost:3000/',
+        method: 'POST',
+        json: {
+            longUrl: 'http://www.google.com/',
+        },
+    }
+
+    request(options, function (error, response, body) {
+        console.log(body) // Print the shortened url.
+    })
     app.listen(3000)
 }
 //testdsds

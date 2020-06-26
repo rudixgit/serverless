@@ -13,6 +13,7 @@
         "dynamodb": "^1.2.1",
         "express": "^4.17.1",
         "request": "^2.88.2",
+        "serverless-api-compression": "^1.0.1",
         "serverless-http": "^2.5.0"
     }
 }

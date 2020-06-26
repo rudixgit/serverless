@@ -4,8 +4,11 @@ app: myapp
 service: dynamo
 plugins:
     - serverless-api-compression
-    - serverless-webpack
-    - serverless-offline
+
+custom:
+    stage: ${opt:stage, self:provider.stage}
+    contentEncoding:
+        contentCompression: 100 # Minimum body size required for compression in bytes
 
 provider:
     name: aws
