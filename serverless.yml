@@ -21,7 +21,7 @@ provider:
           Resource: 'arn:aws:dynamodb:eu-central-1:*:*'
 functions:
     app:
-        handler: index.handler
+        handler: server.handler
         events:
             - http: ANY /
             - http: 'ANY {proxy+}'
