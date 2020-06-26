@@ -1,0 +1,18 @@
+{
+    "name": "my-function",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "compression": "^1.7.4",
+        "dotenv": "^8.2.0",
+        "dynamodb": "^1.2.1",
+        "express": "^4.17.1",
+        "request": "^2.88.2",
+        "serverless-http": "^2.5.0"
+    }
+}
