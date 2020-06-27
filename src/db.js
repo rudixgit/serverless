@@ -7,7 +7,7 @@ AWS.config.update({
     region: 'eu-central-1',
 })
 var db = new AWS.DynamoDB.DocumentClient()
-function get(id) {
+function get(id, callback) {
     db.get(
         {
             TableName: 'ddb',
@@ -21,7 +21,7 @@ function get(id) {
     )
 }
 
-function put(json) {
+function put(json, callback) {
     const json1 = {
         ...json,
         id: json.id ? json.id : new Date().getTime().toString(),

@@ -21,6 +21,9 @@ app.get('/', function (req, res) {
 db.put({ id: 'test' }, function (data) {
     console.log(data)
 })
+db.get('test', function (data) {
+    console.log(data)
+})
 
 app.get('/:id', function (req, res) {
     db.get(req.params.id, function (data) {
