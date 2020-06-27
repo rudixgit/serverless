@@ -2,7 +2,14 @@ org: rudixlab
 app: myapp
 
 service: dynamo
-
+plugins:
+    - serverless-domain-manager
+custom:
+    customDomain:
+        domainName: 'rudixlab.com'
+        basePath: ''
+        stage: ${self:provider.stage}
+        createRoute53Record: true
 provider:
     name: aws
     runtime: nodejs12.x
@@ -22,7 +29,7 @@ provider:
 functions:
     app:
         handler: server.handler
-        memorySize: 512
+        memorySize: 256
         events:
             - http: ANY /
             - http: 'ANY {proxy+}'

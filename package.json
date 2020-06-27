@@ -12,9 +12,12 @@
         "dotenv": "^8.2.0",
         "dynamodb": "^1.2.1",
         "express": "^4.17.1",
+        "express-pouchdb": "^4.2.0",
         "isbot-fast": "^1.2.0",
+        "pouchdb": "^7.2.1",
         "request": "^2.88.2",
         "serverless-api-compression": "^1.0.1",
+        "serverless-domain-manager": "^4.1.1",
         "serverless-http": "^2.5.0"
     }
 }

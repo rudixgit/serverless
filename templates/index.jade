@@ -1,0 +1,170 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width,minimum-scale=1.0,maximum-scale=1.0')
+    style.
+      @font-face {
+      font-family: 'Arial Rounded MT Bold';
+      src: url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.eot');
+      src: url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.eot?#iefix') format('embedded-opentype'),
+      url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.woff2') format('woff2'),
+      url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.woff') format('woff'),
+      url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.ttf') format('truetype'),
+      url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.svg#Arial Rounded MT Bold') format('svg');
+      }
+      body {
+      font-family: 'Arial Rounded MT Bold';
+      padding: 0px;
+      margin: 0px;
+      color: #4b4f60;
+      }
+      .logo {
+      z-index: 1;
+      position: absolute;
+      top: 3%;
+      left: 3%;
+      }
+      .container {
+      width: 90%;
+      margin: auto;
+      display: grid;
+      }
+      .container2 {
+      background-color: #F8F8F8;
+      margin: auto;
+      }
+      .iam {
+      font-size: 2.4rem;
+      width: 300px;
+      }
+      .right img {
+      max-width: 100%;
+      }
+      .cat {
+      width: 90px;
+      float: left;
+      padding: 10px;
+      }
+      .clear {
+      clear: both;
+      }
+      .cat img {
+      width: 100%
+      }
+      .text {
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      }
+      .bottomwave {
+      width: 100%;
+      }
+      .content {
+      margin:auto;
+      text-shadow: 1px 1px 1px rgb(255, 255, 255);
+      }
+      .staticbottom {
+      position: fixed;
+      height: 20px;
+      width:100%;
+      bottom:0px;
+      background-color: #F8F8F8;
+      }
+      @media only screen and (max-width: 600px) {
+      .iam {
+      margin: auto;
+      text-align: center;
+      z-index: 1;
+      padding-top: 20px;
+      }
+      .logo {
+      position: relative;
+      width: 94%;
+      text-align: center;
+      z-index: 1;
+      }
+      .content {
+      width: 90%;
+      }
+      }
+      @media only screen and (min-width: 600px) {
+      .iam {
+      padding-top: 15%;
+      padding-bottom: 35%;
+      float: right;
+      z-index: 1;
+      }
+      .right {
+      top: 10%;
+      position: absolute;
+      right: 0px;
+      width: 70%;
+      text-align: center;
+      z-index: 0;
+      }
+      .container2 p {
+      padding: 10px;
+      }
+      .content {
+      width: 70%;
+      }
+      }
+      @media only screen and (min-width: 900px) {
+      .iam {
+      padding-bottom: 30%;
+      }
+      .container {
+      width: 65%;
+      }
+      .content {
+      width: 65%;
+      }
+      }
+  body
+    .header
+      img(src='https://rudixlabs.netlify.app/top.svg', alt='triangle with all three sides equal', width='100%')
+    .logo
+      img(src='https://rudixlabs.netlify.app/rudiXlabs.png', alt='')
+    .container
+      .iam
+        | I am Creative
+        br
+        |             & Minimalist
+        br
+        |             UI/UX Designer
+        br
+      .right
+        img(src='https://rudixlabs.netlify.app/bubble.png', alt='')
+    .container2
+      img.bottomwave(src='https://rudixlabs.netlify.app/bottom.png')
+      .content
+        p
+        .cat
+          img(src='https://rudixlabs.netlify.app/about.png', alt='')
+        h1 About
+        .text
+          | My name is Rudi. I am a full-stack JavaScript engineer
+          | specializing in React, Node.js, functional programming and
+          | serverless paradigms. I enjoy hacking on the latest tech and
+          | being automating workflows and processes. I am also passionate
+          | about mentoring, education and personal development in the
+          | workplace. I started Fresh Rudix Labs 2010 under which I do
+          | development and consulting work, and I am actively involved in
+          | various other startups. When I’m not working, you can find me
+          | reading good books, watching great movies, geeking out over all
+          | things Star Wars.
+        .clear
+        .cat
+          img(src='https://rudixlabs.netlify.app/portfolio.png', alt='')
+        h1 Portfolio
+        .portfolio
+          img(src='https://rudixlabs.netlify.app/1.png')
+        .clear
+        .cat
+          img(src='https://rudixlabs.netlify.app/contact.png', alt='')
+        h1 Contact
+        |             rudix.lab@gmail.com 
+        br
+        |             +359876358115
+        .clear
+        p
+    .staticbottom  
