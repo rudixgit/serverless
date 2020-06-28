@@ -2,14 +2,7 @@ org: rudixlab
 app: myapp
 
 service: dynamo
-plugins:
-    - serverless-domain-manager
-custom:
-    customDomain:
-        domainName: 'rudixlab.com'
-        basePath: ''
-        stage: ${self:provider.stage}
-        createRoute53Record: true
+
 provider:
     name: aws
     runtime: nodejs12.x
