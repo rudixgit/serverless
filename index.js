@@ -14,7 +14,7 @@ app.get('/img', function (req, res) {
         res.end(ua)
     } else {
         res.end('not bot')
-        // Making cookiesdd
+        // Making cookiesdddd
     }
 })
 
