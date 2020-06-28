@@ -1,8 +1,9 @@
 org: rudixlab
 app: myapp
 
-service: dynamo
-
+service: dynamodb
+package:
+    excludeDevDependencies: false
 provider:
     name: aws
     runtime: nodejs12.x
@@ -20,7 +21,7 @@ provider:
               - dynamodb:DeleteItem
           Resource: 'arn:aws:dynamodb:eu-central-1:*:*'
 functions:
-    app:
+    database:
         handler: server.handler
         memorySize: 256
         events:
