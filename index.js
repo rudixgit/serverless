@@ -18,10 +18,6 @@ app.get('/img', function (req, res) {
     }
 })
 
-db.put({ id: 'test' }, function (data) {
-    console.log(data)
-})
-
 app.get('/:id', async function (req, res) {
     const data = await db.get(req.params.id)
     res.json(data)
