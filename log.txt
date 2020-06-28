@@ -1,0 +1,12 @@
+[Sat, 27 Jun 2020 16:04:11 GMT] [info] [<0.000.0>] ::1 - - GET / 200
+[Sat, 27 Jun 2020 16:04:11 GMT] [info] [<0.000.0>] ::1 - - GET /apple-touch-icon-precomposed.png 404
+[Sat, 27 Jun 2020 16:04:11 GMT] [info] [<0.000.0>] ::1 - - GET /favicon.ico 404
+[Sat, 27 Jun 2020 16:04:11 GMT] [info] [<0.000.0>] ::1 - - GET /apple-touch-icon.png 404
+[Sat, 27 Jun 2020 16:04:12 GMT] [info] [<0.000.0>] ::1 - - GET / 200
+[Sat, 27 Jun 2020 16:04:12 GMT] [info] [<0.000.0>] ::1 - - GET /favicon.ico 404
+[Sat, 27 Jun 2020 16:04:13 GMT] [info] [<0.000.0>] ::1 - - GET / 200
+[Sat, 27 Jun 2020 16:04:13 GMT] [info] [<0.000.0>] ::1 - - GET /favicon.ico 404
+[Sat, 27 Jun 2020 16:04:13 GMT] [info] [<0.000.0>] ::1 - - GET / 200
+[Sat, 27 Jun 2020 16:04:13 GMT] [info] [<0.000.0>] ::1 - - GET /favicon.ico 404
+[Sat, 27 Jun 2020 16:04:13 GMT] [info] [<0.000.0>] ::1 - - GET / 200
+[Sat, 27 Jun 2020 16:04:13 GMT] [info] [<0.000.0>] ::1 - - GET /favicon.ico 404
