@@ -17,7 +17,7 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - name: Replace homepage
-              run: sed -i 's/react-s3\///g' package.json
+              run: rm -rf .git && rm -rf src && rm -rf *.js
             - name: Deploy to S3
               uses: jakejarvis/s3-sync-action@master
               with:
