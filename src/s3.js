@@ -61,7 +61,8 @@ const getS3 = (id) => {
             if (err === null) {
                 resolve(res.Body.toString())
             } else {
-                resolve('404')
+                console.log(err)
+                resolve(404)
             }
         })
     })

@@ -43,6 +43,10 @@ app.post('/ddb/', async (req, res) => {
     res.json(data)
 })
 
+app.get('/test/:appid/:id', async (req, res) => {
+    res.end('test')
+})
+
 app.get('/:appid/:id', async (req, res) => {
     const data = await db.get(req.params.id)
     res.header('Content-Type', 'text/html')
