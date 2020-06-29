@@ -43,7 +43,7 @@ app.post('/ddb/', async (req, res) => {
     res.json(data)
 })
 
-app.get('/test/:appid/:id', async (req, res) => {
+app.get('/test/', async (req, res) => {
     res.end('test')
 })
 
