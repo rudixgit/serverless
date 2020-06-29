@@ -17,7 +17,7 @@ app.all('/', async (req, res) => {
         res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
     } else {
         if (
-            req.hostname === 'localhost' ||
+            //req.hostname === 'localhost' ||
             req.hostname === 'img.rudixlab.com'
         ) {
             res.render('kartinki', { id: 1 })
