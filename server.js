@@ -43,11 +43,7 @@ app.post('/ddb/', async (req, res) => {
 
 app.get('/:appid/:id', async (req, res) => {
     const data = await db.get(req.params.id)
-    let template = ejs.render(fs.readFileSync('./views/rudix.html', 'utf8'), {})
-    res.end(template)
-    //console.log(data)
-
-    //res.render(req.params.appid, data)
+    res.end(ejs.render(fs.readFileSync('./views/rudix.html', 'utf8'), data))
 })
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
