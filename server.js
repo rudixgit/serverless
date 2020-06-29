@@ -13,7 +13,7 @@ app.set('view engine', 'ejs')
 const db = require('./src/db.js')
 const s3 = require('./src/s3.js')
 
-app.all('/', async (req, res) => {
+app.get('/', async (req, res) => {
     if (req.query.id) {
         const url = await s3.uploadFile(req.originalUrl.replace('/?id=', ''))
         res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
@@ -43,15 +43,10 @@ app.post('/ddb/', async (req, res) => {
 
 app.get('/:appid/:id', async (req, res) => {
     const data = await db.get(req.params.id)
-    const template = await s3.getS3('views/' + req.params.appid + '.html')
+    //const template = await s3.getS3('views/' + req.params.appid + '.html')
     res.end(
         ejs.render(
-            process.env.LAMBDA_RUNTIME_DIR
-                ? template
-                : fs.readFileSync(
-                      './views/' + req.params.appid + '.html',
-                      'utf8'
-                  ),
+            fs.readFileSync('./views/' + req.params.appid + '.html', 'utf8'),
             data
         )
     )

@@ -25,6 +25,8 @@ provider:
               - dynamodb:PutItem
               - dynamodb:UpdateItem
               - dynamodb:DeleteItem
+              - s3:PutObject
+              - s3:GetObject
           Resource: 'arn:aws:dynamodb:eu-central-1:*:*'
 functions:
     app:
