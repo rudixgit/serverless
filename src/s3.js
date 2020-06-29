@@ -59,7 +59,7 @@ const getS3 = (id) => {
         }
         s3.getObject(s3Params, function (err, res) {
             if (err === null) {
-                console.log(res)
+                resolve(res.Body.toString())
             } else {
                 resolve('404')
             }

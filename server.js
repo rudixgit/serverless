@@ -43,7 +43,18 @@ app.post('/ddb/', async (req, res) => {
 
 app.get('/:appid/:id', async (req, res) => {
     const data = await db.get(req.params.id)
-    res.end(ejs.render(fs.readFileSync('./views/rudix.html', 'utf8'), data))
+    const template = await s3.getS3('views/' + req.params.appid + '.html')
+    res.end(
+        ejs.render(
+            process.env.LAMBDA_RUNTIME_DIR
+                ? template
+                : fs.readFileSync(
+                      './views/' + req.params.appid + '.html',
+                      'utf8'
+                  ),
+            data
+        )
+    )
 })
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
