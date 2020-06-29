@@ -31,7 +31,7 @@ provider:
 functions:
     app:
         handler: server.handler
-        memorySize: 256
+        memorySize: 512
         events:
             - http: ANY /
             - http: 'ANY {proxy+}'

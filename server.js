@@ -6,6 +6,8 @@ const isBot = require('isbot-fast')
 const ejs = require('ejs')
 const fs = require('fs')
 const app = express()
+const compression = require('compression')
+app.use(compression())
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
@@ -18,7 +20,7 @@ app.get('/', async (req, res) => {
         const url = await s3.uploadFile(req.originalUrl.replace('/?id=', ''))
         res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
     } else {
-        ejs.render(fs.readFileSync('./views/rudix.html', 'utf8'), {})
+        res.sendFile(__dirname + '/views/rudix.html')
     }
 })
 
@@ -43,11 +45,12 @@ app.post('/ddb/', async (req, res) => {
 
 app.get('/:appid/:id', async (req, res) => {
     const data = await db.get(req.params.id)
+    res.header('Content-Type', 'text/html')
     //const template = await s3.getS3('views/' + req.params.appid + '.html')
     res.end(
         ejs.render(
             fs.readFileSync('./views/' + req.params.appid + '.html', 'utf8'),
-            data
+            { ...data, ...req.query }
         )
     )
 })
