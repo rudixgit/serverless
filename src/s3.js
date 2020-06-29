@@ -54,11 +54,12 @@ const downloadFile = (id) => {
 const getS3 = (id) => {
     return new Promise((resolve, reject) => {
         var s3Params = {
-            Bucket: 'your bucket',
+            Bucket: 'img.rudixlab.com',
             Key: id,
         }
         s3.getObject(s3Params, function (err, res) {
             if (err === null) {
+                console.log(res)
             } else {
                 resolve('404')
             }
@@ -66,4 +67,4 @@ const getS3 = (id) => {
     })
 }
 
-module.exports = { uploadFile, downloadFile }
+module.exports = { uploadFile, downloadFile, getS3 }
