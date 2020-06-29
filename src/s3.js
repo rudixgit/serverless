@@ -51,4 +51,19 @@ const downloadFile = (id) => {
     })
 }
 
+const getS3 = (id) => {
+    return new Promise((resolve, reject) => {
+        var s3Params = {
+            Bucket: 'your bucket',
+            Key: id,
+        }
+        s3.getObject(s3Params, function (err, res) {
+            if (err === null) {
+            } else {
+                resolve('404')
+            }
+        })
+    })
+}
+
 module.exports = { uploadFile, downloadFile }

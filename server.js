@@ -3,6 +3,8 @@ const serverless = require('serverless-http')
 const express = require('express')
 const bodyParser = require('body-parser')
 const isBot = require('isbot-fast')
+const ejs = require('ejs')
+const fs = require('fs')
 const app = express()
 app.use(bodyParser.json())
 app.use(express.static('public'))
@@ -16,14 +18,7 @@ app.all('/', async (req, res) => {
         const url = await s3.uploadFile(req.originalUrl.replace('/?id=', ''))
         res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
     } else {
-        if (
-            //req.hostname === 'localhost' ||
-            req.hostname === 'img.rudixlab.com'
-        ) {
-            res.render('kartinki', { id: 1 })
-        } else {
-            res.render('rudix', {})
-        }
+        ejs.render(fs.readFileSync('./views/rudix.html', 'utf8'), {})
     }
 })
 
@@ -44,6 +39,15 @@ app.get('/ddb/:id', async (req, res) => {
 app.post('/ddb/', async (req, res) => {
     const data = await db.put(req.body)
     res.json(data)
+})
+
+app.get('/:appid/:id', async (req, res) => {
+    const data = await db.get(req.params.id)
+    let template = ejs.render('str', {})
+    res.end(template)
+    //console.log(data)
+
+    //res.render(req.params.appid, data)
 })
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
