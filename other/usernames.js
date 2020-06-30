@@ -35,25 +35,31 @@ function randomize(content, keyword) {
 }
 
 const db = require('../src/db.js')
-async.eachLimit(
-    _.shuffle(keywords),
-    300,
-    async function (element, callback) {
-        const json = {
-            id: slugify(element),
-            title: element,
-            text: randomize(content, element),
-            items: _.shuffle(keywords)
-                .slice(0, 5)
-                .map((item) => {
-                    return { item: item, slug: slugify(item) }
-                }),
-        }
-        await db.put(json)
 
-        callback()
-    },
-    function (err) {
-        console.log(err)
-    }
-)
+const go = (star) => {
+    request.get(
+        'http://192.168.1.101:5984/twitter/_design/api/_view/users?reduce=true&group=true&limit=1000&start_key="' +
+            star +
+            '"',
+        function (x, v, body) {
+            const arr = JSON.parse(body).rows
+            const last = arr.reverse()[0].key
+
+            async.eachLimit(
+                arr,
+                300,
+                async function (element, callback) {
+                    await db.put({ id: element.key, type: 't' })
+
+                    callback()
+                },
+                function (err) {
+                    console.log(last)
+                    go(last)
+                }
+            )
+        }
+    )
+}
+
+go('_')

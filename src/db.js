@@ -7,6 +7,19 @@ AWS.config.update({
     region: 'eu-central-1',
 })
 var db = new AWS.DynamoDB.DocumentClient()
+if (!process.env.LAMBDA_RUNTIME_DIR) {
+    var params = {
+        TableName: 'ddb',
+        //FilterExpression: 'id >= :this_year',
+        //ExpressionAttributeValues: { ':this_year': '_AllenDSmith_' },
+        Limit: 10,
+    }
+
+    db.scan(params, function (err, data) {
+        if (err) console.log(err)
+        else console.log(data)
+    })
+}
 function get(id, callback) {
     return new Promise((resolve) => {
         db.get(

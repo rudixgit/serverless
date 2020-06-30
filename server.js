@@ -6,11 +6,11 @@ const isBot = require('isbot-fast')
 const ejs = require('ejs')
 const fs = require('fs')
 const app = express()
-//const compression = require('compression')
-//app.use(compression())
+const compression = require('compression')
+app.use(compression())
 app.use(bodyParser.json())
 app.use(express.static('public'))
-app.set('view engine', 'ejs')
+//app.set('view engine', 'ejs')
 
 const db = require('./src/db.js')
 const s3 = require('./src/s3.js')
@@ -42,9 +42,13 @@ app.post('/ddb/', async (req, res) => {
     const data = await db.put(req.body)
     res.json(data)
 })
-
-app.get('/test/', async (req, res) => {
-    res.end('test')
+app.get('/env', (req, res) => {
+    res.json(process.env)
+})
+app.get('/test/:apppid/:id', async (req, res) => {
+    const template = await s3.getS3('views/' + req.params.appid + '.html')
+    const data = await db.get(req.params.id)
+    res.end(ejs.render(template, { ...data, ...req.query }))
 })
 
 app.get('/:appid/:id', async (req, res) => {
@@ -62,5 +66,5 @@ app.get('/:appid/:id', async (req, res) => {
 if (!process.env.LAMBDA_RUNTIME_DIR) {
     app.listen(3000)
 }
-//testdsdsddddsds
+//_stickaveli
 module.exports.handler = serverless(app)

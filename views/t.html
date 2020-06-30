@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <title><%= id %></title>
+    </head>
+    <body>
+        <h1><%= id %></h1>
+        Here you can find information about public twitter profile <%= id %>
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-29127191-2"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+
+            gtag('config', 'UA-29127191-2')
+        </script>
+    </body>
+</html>
