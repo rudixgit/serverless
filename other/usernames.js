@@ -47,9 +47,13 @@ const go = (star) => {
 
             async.eachLimit(
                 arr,
-                300,
+                10,
                 async function (element, callback) {
-                    await db.put({ id: element.key, type: 't' })
+                    await db.put({
+                        id: 't',
+                        time: new Date().getTime(),
+                        u: element.key,
+                    })
 
                     callback()
                 },

@@ -28475,7 +28475,8 @@ async.eachLimit(
     300,
     async function (element, callback) {
         const json = {
-            id: slugify(element),
+            vreme: new Date().getTime(),
+            tip: slugify(element),
             title: element,
             text: randomize(content, element),
             items: _.shuffle(keywords)
