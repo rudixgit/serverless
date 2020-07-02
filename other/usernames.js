@@ -50,8 +50,8 @@ const go = (star) => {
                 10,
                 async function (element, callback) {
                     await db.put({
-                        id: 't',
-                        time: new Date().getTime(),
+                        tip: 't',
+                        vreme: new Date().getTime(),
                         u: element.key,
                     })
 
@@ -66,4 +66,4 @@ const go = (star) => {
     )
 }
 
-go('_')
+go('Chabie54405457')

@@ -52,24 +52,26 @@ function put(json, callback) {
         })
     })
 }
-async function query(id) {
-    const doc = await get(id)
+async function query(id, collection, limit) {
+    //const doc = await get(id)
     var params = {
         TableName: 'ddb',
-        KeyConditionExpression: 'id = :hkey and time >= :ukey',
+        KeyConditionExpression: 'tip = :hkey and vreme >= :ukey',
         ExpressionAttributeValues: {
-            ':hkey': 't',
-            ':ukey': '1',
+            ':hkey': collection,
+            ':ukey': id,
         },
+        Limit: limit,
     }
-    db.query(params, function (err, data) {
-        console.log(err)
+    return new Promise((resolve, reject) => {
+        db.query(params, function (err, data) {
+            resolve(data)
+        })
     })
-    console.log(doc)
 }
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
-    // query('__Jaham__')
+    query(1593543944036, 't')
 }
 
 module.exports = { get, put, query }

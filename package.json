@@ -20,6 +20,7 @@
         "serverless-api-compression": "^1.0.1",
         "serverless-domain-manager": "^4.1.1",
         "serverless-http": "^2.5.0",
-        "slugify": "^1.4.4"
+        "slugify": "^1.4.4",
+        "twitter": "^1.7.1"
     }
 }

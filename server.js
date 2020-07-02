@@ -14,16 +14,36 @@ app.use(express.static('public'))
 
 const db = require('./src/db.js')
 const s3 = require('./src/s3.js')
-
+const twitter = require('./src/twitter.js')
 app.get('/', async (req, res) => {
+    res.header('Content-Type', 'text/html')
     if (req.query.id) {
         const url = await s3.uploadFile(req.originalUrl.replace('/?id=', ''))
         res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
     } else {
-        res.sendFile(__dirname + '/views/rudix.html')
+        const contents = await s3.getS3('views/rudix.html')
+        res.end(contents)
     }
 })
-
+app.get('/ddb/:id', async (req, res) => {
+    const data = await db.get(req.params.id)
+    res.json(data)
+})
+app.post('/ddb/', async (req, res) => {
+    const data = await db.put(req.body)
+    res.json(data)
+})
+app.get('/env', (req, res) => res.json(process.env))
+app.get('/sitemap', async function (req, res) {
+    res.header('Content-Type', 'text/plain')
+    const data = await db.query(1593543958961, 't', 50000)
+    res.end(
+        data.Items.map(
+            (item) =>
+                'https://rudixlab.com/t/' + item.vreme + '/' + item.u + '/'
+        ).join('\n')
+    )
+})
 app.get('/i/:id', async (req, res) => {
     const ua = req.headers['user-agent'] || ''
     if (isBot(ua)) {
@@ -34,33 +54,40 @@ app.get('/i/:id', async (req, res) => {
     }
 })
 
-app.get('/ddb/:id', async (req, res) => {
-    const data = await db.get(req.params.id)
-    res.json(data)
-})
-app.post('/ddb/', async (req, res) => {
-    const data = await db.put(req.body)
-    res.json(data)
-})
-app.get('/env', (req, res) => {
-    res.json(process.env)
-})
-app.get('/test/:apppid/:id', async (req, res) => {
-    const template = await s3.getS3('views/' + req.params.appid + '.html')
-    const data = await db.get(req.params.id)
-    res.end(ejs.render(template, { ...data, ...req.query }))
-})
-
-app.get('/:appid/:id', async (req, res) => {
-    const data = await db.get(req.params.id)
+app.get('/t/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
-    //const template = await s3.getS3('views/' + req.params.appid + '.html')
+    const { time, id } = req.params
+    const data = await db.query(Math.round(time), 't', 10)
+    const tweets = await twitter.timeline(id)
+    const contents = await s3.getS3('views/t.html')
     res.end(
-        ejs.render(
-            fs.readFileSync('./views/' + req.params.appid + '.html', 'utf8'),
-            { ...data, ...req.query }
-        )
+        ejs.render(contents, {
+            ...data,
+            tweets,
+            tweets_stringified: JSON.stringify(tweets, null, 4),
+            ...req.params,
+        })
     )
+})
+app.get('/:colid/:time/:id', async (req, res) => {
+    res.header('Content-Type', 'text/html')
+    const { time, id, colid } = req.params
+    const data = await db.query(Math.round(time), colid, 10)
+    const contents = await s3.getS3('views/' + colid + '.html')
+
+    res.end(
+        ejs.render(contents, {
+            ...data,
+            ...req.params,
+        })
+    )
+})
+app.get('/:appid/:id', async (req, res) => {
+    res.header('Content-Type', 'text/html')
+    const { appid, id } = req.params
+    const data = await db.get(id)
+    const contents = await s3.getS3('views/' + appid + '.html')
+    res.end(ejs.render(contents, { ...data, ...req.query }))
 })
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
