@@ -23,7 +23,7 @@ app.get('/', async (req, res) => {
         res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
     } else {
         const contents = await s3.getS3('views/rudix.html')
-        res.end(contents)
+        res.end(contents.Body.toString())
     }
 })
 app.get('/ddb/:id', async (req, res) => {
@@ -60,6 +60,12 @@ app.get('/i/:id', async (req, res) => {
     }
 })
 
+app.get('/s3/*', async (req, res) => {
+    const contents = await s3.getS3(req.path.replace('/s3/', ''))
+    res.header('Content-Type', contents.ContentType)
+    res.end(contents.Body)
+})
+
 app.get('/t/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { time, id } = req.params
@@ -72,7 +78,7 @@ app.get('/t/:time/:id', async (req, res) => {
     const tweets = await twitter.timeline(id)
     const contents = await s3.getS3('views/t.html')
     res.end(
-        ejs.render(contents, {
+        ejs.render(contents.Body.toString(), {
             ...data,
             tweets,
             tweets_stringified: JSON.stringify(tweets, null, 4),
@@ -93,7 +99,7 @@ app.get('/:colid/:time/:id', async (req, res) => {
     const contents = await s3.getS3('views/' + colid + '.html')
 
     res.end(
-        ejs.render(contents, {
+        ejs.render(contents.Body.toString(), {
             ...data,
             ...req.params,
         })
