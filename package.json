@@ -18,10 +18,12 @@
         "md5": "^2.2.1",
         "nano": "^8.2.2",
         "request": "^2.88.2",
-        "serverless-api-compression": "^1.0.1",
-        "serverless-domain-manager": "^4.1.1",
         "serverless-http": "^2.5.0",
         "slugify": "^1.4.4",
         "twitter": "^1.7.1"
+    },
+    "devDependencies": {
+        "serverless-plugin-warmup": "^4.9.0",
+        "serverless-domain-manager": "^4.1.1"
     }
 }

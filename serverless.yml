@@ -1,9 +1,9 @@
-org: rudixlab
 app: rudixlab
 
 service: dynamodbone
 plugins:
     - serverless-domain-manager
+    - serverless-plugin-warmup
 custom:
     customDomain:
         domainName: 'rudixlab.com'
@@ -37,6 +37,7 @@ provider:
               - 'arn:aws:s3:::'
 functions:
     app:
+        warmup: true
         handler: server.handler
         memorySize: 512
         events:
