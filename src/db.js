@@ -27,6 +27,7 @@ async function get(id) {
         ExpressionAttributeValues: {
             ':hkey': id,
         },
+        ScanIndexForward: false,
     }
     return new Promise((resolve) => {
         if (!cached) {
@@ -52,7 +53,7 @@ function put(json, callback) {
         })
     })
 }
-async function query(id, collection, limit) {
+async function query({ id, collection, limit, descending }) {
     //const doc = await get(id)
     var params = {
         TableName: 'ddb',
@@ -62,16 +63,13 @@ async function query(id, collection, limit) {
             ':ukey': id,
         },
         Limit: limit,
+        ScanIndexForward: descending,
     }
     return new Promise((resolve, reject) => {
         db.query(params, function (err, data) {
             resolve(data)
         })
     })
-}
-
-if (!process.env.LAMBDA_RUNTIME_DIR) {
-    query(1593543944036, 't')
 }
 
 module.exports = { get, put, query }

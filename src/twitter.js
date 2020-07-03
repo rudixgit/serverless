@@ -1,5 +1,7 @@
 const Twitter = require('twitter')
 const fs = require('fs')
+const ig = require('instagram-scraping')
+
 const client = new Twitter({
     consumer_key: process.env.consumer_key,
     consumer_secret: process.env.consumer_secret,
@@ -43,4 +45,10 @@ const timeline = async (id) => {
         }
     })
 }
-module.exports = { timeline }
+const instaTimeline = (id) => {
+    ig.scrapeUserPage(id).then((result) => {
+        console.dir(result)
+    })
+}
+
+module.exports = { timeline, instaTimeline }

@@ -7,6 +7,7 @@ const ejs = require('ejs')
 const fs = require('fs')
 const app = express()
 const compression = require('compression')
+
 app.use(compression())
 app.use(bodyParser.json())
 app.use(express.static('public'))
@@ -36,7 +37,12 @@ app.post('/ddb/', async (req, res) => {
 app.get('/env', (req, res) => res.json(process.env))
 app.get('/sitemap', async function (req, res) {
     res.header('Content-Type', 'text/plain')
-    const data = await db.query(1593543958961, 't', 50000)
+    const data = await db.query({
+        id: 1,
+        collection: 't',
+        limit: 50000,
+        descending: false,
+    })
     res.end(
         data.Items.map(
             (item) =>
@@ -57,7 +63,12 @@ app.get('/i/:id', async (req, res) => {
 app.get('/t/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { time, id } = req.params
-    const data = await db.query(Math.round(time), 't', 10)
+    const data = await db.query({
+        id: Math.round(time),
+        collection: 't',
+        limit: 50,
+        descending: true,
+    })
     const tweets = await twitter.timeline(id)
     const contents = await s3.getS3('views/t.html')
     res.end(
@@ -72,7 +83,13 @@ app.get('/t/:time/:id', async (req, res) => {
 app.get('/:colid/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { time, id, colid } = req.params
-    const data = await db.query(Math.round(time), colid, 10)
+
+    const data = await db.query({
+        id: Math.round(time),
+        collection: colid,
+        limit: 10,
+        descending: true,
+    })
     const contents = await s3.getS3('views/' + colid + '.html')
 
     res.end(
