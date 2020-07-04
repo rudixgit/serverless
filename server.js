@@ -71,14 +71,15 @@ app.get('/t/:time/:id', async (req, res) => {
         limit: 10,
         descending: true,
     })
+
     const tweets = await timeline(id)
     const contents = await getS3('views/t.html')
     res.end(
         ejs.render(contents.Body.toString(), {
-            ...data,
             tweets,
             tweets_stringified: JSON.stringify(tweets, null, 4),
             ...req.params,
+            ...data,
         })
     )
 })
