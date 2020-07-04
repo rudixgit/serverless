@@ -10,7 +10,7 @@ const client = new Twitter({
 })
 function readFile(path) {
     return new Promise((resolve, reject) => {
-        fs.readFile('/tmp/' + path, 'utf8', function (err, data) {
+        fs.readFile(path, 'utf8', function (err, data) {
             if (err) {
                 resolve(null)
             }
@@ -20,7 +20,7 @@ function readFile(path) {
 }
 
 const timeline = async (id) => {
-    const cached = await readFile(id)
+    const cached = await readFile('/tmp/' + id)
     return new Promise((resolve) => {
         if (cached) {
             resolve(JSON.parse(cached))
@@ -51,4 +51,4 @@ const instaTimeline = (id) => {
     })
 }
 
-module.exports = { timeline, instaTimeline }
+module.exports = { timeline, instaTimeline, readFile }

@@ -4,40 +4,36 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const isBot = require('isbot-fast')
 const ejs = require('ejs')
-const fs = require('fs')
 const app = express()
 const compression = require('compression')
 
 app.use(compression())
 app.use(bodyParser.json())
 app.use(express.static('public'))
-//app.set('view engine', 'ejs')
 
-const db = require('./src/db.js')
-const s3 = require('./src/s3.js')
-const twitter = require('./src/twitter.js')
+const { get, put, query } = require('./src/db.js')
+const { getS3 } = require('./src/s3.js')
+const { timeline, readFile } = require('./src/twitter.js')
 app.get('/', async (req, res) => {
     res.header('Content-Type', 'text/html')
-    if (req.query.id) {
-        const url = await s3.uploadFile(req.originalUrl.replace('/?id=', ''))
-        res.send(url.split('/').reverse()[0] + '<img src="' + url + '">')
-    } else {
-        const contents = await s3.getS3('views/rudix.html')
-        res.end(contents.Body.toString())
-    }
+
+    const contents = await getS3('views/rudix.html')
+    const json = await readFile('./views/rudix.json')
+
+    res.end(ejs.render(contents.Body.toString(), JSON.parse(json)))
 })
 app.get('/ddb/:id', async (req, res) => {
-    const data = await db.get(req.params.id)
+    const data = await get(req.params.id)
     res.json(data)
 })
 app.post('/ddb/', async (req, res) => {
-    const data = await db.put(req.body)
+    const data = await put(req.body)
     res.json(data)
 })
 app.get('/env', (req, res) => res.json(process.env))
 app.get('/sitemap', async function (req, res) {
     res.header('Content-Type', 'text/plain')
-    const data = await db.query({
+    const data = await query({
         id: 1,
         collection: 't',
         limit: 50000,
@@ -53,7 +49,7 @@ app.get('/sitemap', async function (req, res) {
 app.get('/i/:id', async (req, res) => {
     const ua = req.headers['user-agent'] || ''
     if (isBot(ua)) {
-        await s3.downloadFile(req.params.id)
+        await downloadFile(req.params.id)
         res.sendFile('/tmp/test.jpg')
     } else {
         res.render('kartinki', { id: req.params.id })
@@ -61,7 +57,7 @@ app.get('/i/:id', async (req, res) => {
 })
 
 app.get('/s3/*', async (req, res) => {
-    const contents = await s3.getS3(req.path.replace('/s3/', ''))
+    const contents = await getS3(req.path.replace('/s3/', ''))
     res.header('Content-Type', contents.ContentType)
     res.end(contents.Body)
 })
@@ -69,14 +65,14 @@ app.get('/s3/*', async (req, res) => {
 app.get('/t/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { time, id } = req.params
-    const data = await db.query({
+    const data = await query({
         id: Math.round(time),
         collection: 't',
         limit: 50,
         descending: true,
     })
-    const tweets = await twitter.timeline(id)
-    const contents = await s3.getS3('views/t.html')
+    const tweets = await timeline(id)
+    const contents = await getS3('views/t.html')
     res.end(
         ejs.render(contents.Body.toString(), {
             ...data,
@@ -90,13 +86,13 @@ app.get('/:colid/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { time, id, colid } = req.params
 
-    const data = await db.query({
+    const data = await query({
         id: Math.round(time),
         collection: colid,
         limit: 10,
         descending: true,
     })
-    const contents = await s3.getS3('views/' + colid + '.html')
+    const contents = await getS3('views/' + colid + '.html')
 
     res.end(
         ejs.render(contents.Body.toString(), {
@@ -108,8 +104,8 @@ app.get('/:colid/:time/:id', async (req, res) => {
 app.get('/:appid/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { appid, id } = req.params
-    const data = await db.get(id)
-    const contents = await s3.getS3('views/' + appid + '.html')
+    const data = await get(id)
+    const contents = await getS3('views/' + appid + '.html')
     res.end(ejs.render(contents, { ...data, ...req.query }))
 })
 

@@ -1,0 +1,83 @@
+{
+    "text": "My name is Rudi. I am a full-stack JavaScript engineer specializing in React, Node.js, functional programming and serverless paradigms. I enjoy hacking on the latest tech and being automating workflows and processes. I am also passionate about mentoring, education and personal development in the workplace. I started Fresh Rudix Labs 2010 under which I do development and consulting work, and I am actively involved in various other startups. When I’m not working, you can find me reading good books, watching great movies, geeking out over all things Star Wars.",
+    "skills": {
+        "frontend": [
+            "REACT NATIVE",
+            "REACT.JS",
+            "ES6 JS",
+            "SASS",
+            "JADE/PUG",
+            "SCSS",
+            "SKETCH MACOS",
+            "HTML5",
+            "MATERIAL UI",
+            "BOOTSTRAP",
+            "GATSBY",
+            "GRAPHQL"
+        ],
+        "backend": [
+            "NODE.JS",
+            "FEDORA OS",
+            "UBUNTU OS",
+            "AWS EC2",
+            "AWS LAMBDA",
+            "AWS DYNAMODB",
+            "AWS API GATEWAY",
+            "AWS ROUTE53",
+            "AWS S3",
+            "COUCHDB",
+            "FIREBASE",
+            "DOCKER",
+            "GITHUB",
+            "GITLAB",
+            "NETLIFY",
+            "STRAPI",
+            "HASURA"
+        ]
+    },
+    "jobs": [
+        {
+            "title": "Facebook App Developer  ,Ringful",
+            "date": {
+                "from": "2008 September",
+                "to": "2008 December"
+            },
+            "description": "Facebook API integration, VOIP, Jboss  "
+        },
+
+        {
+            "title": "Senior Web Developer,  Agency Venera",
+            "date": {
+                "from": "2008 November",
+                "to": "2009 June"
+            },
+            "description": "At SOAP I was required to carry out full stack duties across a broad range of projects including php/MySQL with front end technologies ranging from html/css to Flash."
+        },
+
+        {
+            "title": "Print Design tourist Newspaper, Ballerman am Balkan",
+            "date": {
+                "from": "2009 December",
+                "to": "2010 April"
+            },
+            "description": "Responsible for the brand   weekly newspaper design, PHP website"
+        },
+
+        {
+            "title": "Web Developer, Golgstrand Reisen",
+            "date": {
+                "from": "2012 July",
+                "to": "2013 September"
+            },
+            "description": "Gathering data  Organizing and structuring the plan Translating all related documents"
+        },
+        {
+            "title": "FullStack Cloud Consultant, dMedia Bulgaria",
+            "date": {
+                "from": "2013 September",
+                "to": "2015 September"
+            },
+            "description": " "
+        }
+    ]
+}
