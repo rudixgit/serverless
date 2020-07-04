@@ -39,7 +39,6 @@ provider:
               - 'arn:aws:s3:::'
 functions:
     app:
-        disableLogs: true
         handler: server.handler
         memorySize: 512
         events:
