@@ -11,6 +11,9 @@ custom:
         stage: ${self:provider.stage}
         createRoute53Record: true
 provider:
+    logs:
+        - accessLogging: false
+        - executionLogging: false
     name: aws
     runtime: nodejs12.x
     stage: dev
@@ -37,6 +40,7 @@ provider:
               - 'arn:aws:s3:::'
 functions:
     app:
+        disableLogs: true
         warmup: true
         handler: server.handler
         memorySize: 512

@@ -68,7 +68,7 @@ app.get('/t/:time/:id', async (req, res) => {
     const data = await query({
         id: Math.round(time),
         collection: 't',
-        limit: 50,
+        limit: 10,
         descending: true,
     })
     const tweets = await timeline(id)
