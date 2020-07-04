@@ -37,7 +37,8 @@
     },
     "jobs": [
         {
-            "title": "Facebook App Developer  ,Ringful",
+            "title": "Facebook App Developer ",
+            "co": "Ringful",
             "date": {
                 "from": "2008 September",
                 "to": "2008 December"
@@ -46,7 +47,8 @@
         },
 
         {
-            "title": "Senior Web Developer,  Agency Venera",
+            "title": "Senior Web Developer, ",
+            "co": " Agency Venera",
             "date": {
                 "from": "2008 November",
                 "to": "2009 June"
@@ -55,7 +57,8 @@
         },
 
         {
-            "title": "Print Design tourist Newspaper, Ballerman am Balkan",
+            "title": "Print Design tourist Newspaper, ",
+            "co": "Ballerman am Balkan",
             "date": {
                 "from": "2009 December",
                 "to": "2010 April"
@@ -64,7 +67,8 @@
         },
 
         {
-            "title": "Web Developer, Golgstrand Reisen",
+            "title": "Web Developer, ",
+            "co": "Golgstrand Reisen",
             "date": {
                 "from": "2012 July",
                 "to": "2013 September"
@@ -73,6 +77,7 @@
         },
         {
             "title": "FullStack Cloud Consultant, dMedia Bulgaria",
+            "co": "dMedia Bulgaria",
             "date": {
                 "from": "2013 September",
                 "to": "2015 September"

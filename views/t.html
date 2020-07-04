@@ -7,6 +7,10 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <title><%- id %> Public Twitter Info</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+        />
         <style>
             @font-face {
                 font-family: 'DINNextRoundedLTW01-Bold';
@@ -21,6 +25,12 @@
                         format('truetype'),
                     url('//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.svg#DINNextRoundedLTW01-Bold')
                         format('svg');
+            }
+            h1 {
+                color: #00cec9;
+            }
+            h2 {
+                color: #ff7675;
             }
             body {
                 font-family: 'DINNextRoundedLTW01-Bold';
@@ -57,7 +67,23 @@
                 padding: 4px;
                 margin: 5px;
             }
+            .modal {
+                background-color: #636e72;
+            }
+            .tag {
+                float: left;
+                padding: 4px;
+                margin: 5px;
+                background-color: #636e72;
+                border-radius: 3px;
+            }
+            .tag a {
+                text-decoration: none;
+                font-size: 70%;
+            }
         </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     </head>
     <body>
         <div class="header">
@@ -66,14 +92,20 @@
             <h1><%- id %></h1>
         </div>
         <div class="container">
-            Here you can find information about public twitter profile
+            <div id="ex1" class="modal">
+                <p>Thanks for clicking. That felt good.</p>
+                <a href="#" rel="modal:close">Close</a>
+            </div>
+
+            <!-- Link to open the modal -->
+            <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
             <h2>Tweets</h2>
             <% tweets.forEach(function(prop) { %>
             <div class="tweet"><%- prop.text %></div>
             <% }); %>
             <h2>Similar Usernames</h2>
             <% Items.forEach(function(prop) { %>
-            <div>
+            <div class="tag">
                 <a href="/t/<%- prop.vreme %>/<%- prop.u %>/"><%- prop.u %></a>
             </div>
             <% }); %>
