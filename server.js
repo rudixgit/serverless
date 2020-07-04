@@ -39,6 +39,7 @@ app.get('/sitemap', async function (req, res) {
         limit: 50000,
         descending: false,
     })
+
     res.end(
         data.Items.map(
             (item) =>
@@ -71,15 +72,25 @@ app.get('/t/:time/:id', async (req, res) => {
         limit: 10,
         descending: true,
     })
-
     const tweets = await timeline(id)
+    const tags = tweets[0]
+        ? tweets
+              .map((item) => item.text)
+              .join(' ')
+              .split(' ')
+              .filter(function (n) {
+                  if (/#/.test(n)) return n.replace('#', '')
+              })
+        : []
+
     const contents = await getS3('views/t.html')
     res.end(
         ejs.render(contents.Body.toString(), {
-            tweets,
-            tweets_stringified: JSON.stringify(tweets, null, 4),
-            ...req.params,
             ...data,
+            tweets,
+            tags,
+            //tweets_stringified: JSON.stringify(tweets, null, 4),
+            ...req.params,
         })
     )
 })
