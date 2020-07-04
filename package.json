@@ -23,7 +23,6 @@
         "twitter": "^1.7.1"
     },
     "devDependencies": {
-        "serverless-plugin-warmup": "^4.9.0",
         "serverless-domain-manager": "^4.1.1"
     }
 }

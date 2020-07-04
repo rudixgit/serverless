@@ -3,7 +3,6 @@ app: rudixlab
 service: dynamodbone
 plugins:
     - serverless-domain-manager
-    - serverless-plugin-warmup
 custom:
     customDomain:
         domainName: 'rudixlab.com'
@@ -41,7 +40,6 @@ provider:
 functions:
     app:
         disableLogs: true
-        warmup: true
         handler: server.handler
         memorySize: 512
         events:
