@@ -11,8 +11,8 @@ custom:
         createRoute53Record: true
 provider:
     logs:
-        - accessLogging: false
-        - executionLogging: false
+        accessLogging: false
+        executionLogging: false
     name: aws
     runtime: nodejs12.x
     stage: dev
