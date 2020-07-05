@@ -118,7 +118,7 @@ app.get('/:appid/:id', async (req, res) => {
     const { appid, id } = req.params
     const data = await get(id)
     const contents = await getS3('views/' + appid + '.html')
-    res.end(ejs.render(contents, { ...data, ...req.query }))
+    res.end(ejs.render(contents.Body.toString(), { ...data, ...req.query }))
 })
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
