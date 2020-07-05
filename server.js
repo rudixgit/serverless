@@ -73,6 +73,10 @@ app.get('/t/:time/:id', async (req, res) => {
         descending: true,
     })
     const tweets = await timeline(id)
+
+    const user = tweets[0]
+        ? tweets[0].user
+        : { profile_image_url_https: 'http://twivatar.glitch.me/' + id }
     const tags = tweets[0]
         ? tweets
               .map((item) => item.text)
@@ -88,6 +92,7 @@ app.get('/t/:time/:id', async (req, res) => {
         ejs.render(contents.Body.toString(), {
             ...data,
             tweets,
+            user,
             tags,
             //tweets_stringified: JSON.stringify(tweets, null, 4),
             ...req.params,
