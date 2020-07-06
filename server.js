@@ -24,7 +24,9 @@ app.use(async function (req, res, next) {
     const prev = await readFile('/tmp/log.txt')
     await writeFile(
         '/tmp/log.txt',
-        JSON.stringify(json) + ',\n' + prev ? prev : '{}'
+        prev
+            ? '\n' + JSON.stringify(json) + ',' + prev + ''
+            : JSON.stringify(json)
     )
     next()
 })
@@ -42,11 +44,11 @@ app.get('/ddb/:id', async (req, res) => {
 })
 app.post('/ddb/', async (req, res) => {
     const data = await put(req.body)
-    res.json('[' + data + ']')
+    res.json(data)
 })
 app.get('/log', async (req, res) => {
     const contents = await readFile('/tmp/log.txt')
-    res.end(contents)
+    res.end('[' + contents + ']')
 })
 app.get('/sitemap', async function (req, res) {
     res.header('Content-Type', 'text/plain')
