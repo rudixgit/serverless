@@ -22,7 +22,10 @@ app.use(async function (req, res, next) {
         ua: req.headers['user-agent'],
     }
     const prev = await readFile('/tmp/log.txt')
-    await writeFile('/tmp/log.txt', prev + '\n' + JSON.stringify(json))
+    await writeFile(
+        '/tmp/log.txt',
+        JSON.stringify(json) + ',\n' + prev ? prev : '{}'
+    )
     next()
 })
 app.get('/', async (req, res) => {
@@ -39,7 +42,7 @@ app.get('/ddb/:id', async (req, res) => {
 })
 app.post('/ddb/', async (req, res) => {
     const data = await put(req.body)
-    res.json(data)
+    res.json('[' + data + ']')
 })
 app.get('/log', async (req, res) => {
     const contents = await readFile('/tmp/log.txt')
