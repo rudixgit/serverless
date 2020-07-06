@@ -13,8 +13,10 @@ const download = (url, callback) => {
 const AWS = require('aws-sdk')
 const { resolve } = require('path')
 const s3 = new AWS.S3({
-    accessKeyId: process.env.s3a,
-    secretAccessKey: process.env.s3s,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    sessionToken: process.env.AWS_SESSION_TOKEN,
+    region: 'eu-central-1',
 })
 
 const uploadFile = (url) => {
