@@ -58,7 +58,6 @@ const go = (star) => {
                     callback()
                 },
                 function (err) {
-                    console.log(last)
                     go(last)
                 }
             )
@@ -66,4 +65,4 @@ const go = (star) => {
     )
 }
 
-go('fsuperiorstark')
+go('larkerise1234')

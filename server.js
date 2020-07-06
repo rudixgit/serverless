@@ -76,7 +76,12 @@ app.get('/t/:time/:id', async (req, res) => {
 
     const user = tweets[0]
         ? tweets[0].user
-        : { profile_image_url_https: 'http://twivatar.glitch.me/' + id }
+        : {
+              profile_image_url_https: 'http://twivatar.glitch.me/' + id,
+              profile_background_color: 'black',
+          }
+    console.log(user)
+
     const tags = tweets[0]
         ? tweets
               .map((item) => item.text)
