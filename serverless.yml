@@ -1,6 +1,6 @@
 app: rudixlab
 
-service: rudixlabs
+service: rudix
 plugins:
     - serverless-domain-manager
 custom:
