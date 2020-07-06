@@ -18,6 +18,16 @@ function readFile(path) {
         })
     })
 }
+function writeFile(path, contents) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path, contents, 'utf8', function (err, data) {
+            if (err) {
+                resolve(null)
+            }
+            resolve(data)
+        })
+    })
+}
 
 const timeline = async (id) => {
     const cached = await readFile('/tmp/' + id)
@@ -51,4 +61,4 @@ const instaTimeline = (id) => {
     })
 }
 
-module.exports = { timeline, instaTimeline, readFile }
+module.exports = { timeline, instaTimeline, readFile, writeFile }

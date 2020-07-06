@@ -13,7 +13,18 @@ app.use(express.static('public'))
 
 const { get, put, query } = require('./src/db.js')
 const { getS3 } = require('./src/s3.js')
-const { timeline, readFile } = require('./src/twitter.js')
+const { timeline, readFile, writeFile } = require('./src/twitter.js')
+
+app.use(async function (req, res, next) {
+    const json = {
+        path: req.path,
+        t: new Date(),
+        ua: req.headers['user-agent'],
+    }
+    const prev = await readFile('/tmp/log.txt')
+    await writeFile('/tmp/log.txt', prev + '\n' + JSON.stringify(json))
+    next()
+})
 app.get('/', async (req, res) => {
     res.header('Content-Type', 'text/html')
 
@@ -30,7 +41,10 @@ app.post('/ddb/', async (req, res) => {
     const data = await put(req.body)
     res.json(data)
 })
-app.get('/env', (req, res) => res.json(process.env))
+app.get('/log', async (req, res) => {
+    const contents = await readFile('/tmp/log.txt')
+    res.end(contents)
+})
 app.get('/sitemap', async function (req, res) {
     res.header('Content-Type', 'text/plain')
     const data = await query({
