@@ -1,6 +1,6 @@
 app: rudixlab
 
-service: dynamodbone
+service: rudixlabs
 plugins:
     - serverless-domain-manager
 custom:
@@ -34,7 +34,7 @@ provider:
               - s3:GetObject
               - s3:ListBucket
           Resource:
-              - 'arn:aws:s3:::'
+              - 'arn:aws:s3:::*'
 functions:
     app:
         handler: server.handler
