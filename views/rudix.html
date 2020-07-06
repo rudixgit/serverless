@@ -1,453 +1,296 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>🧪 rudiXlab - DevOps consulting Bulgaria</title>
-        <meta
-            name="viewport"
-            content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"
-        />
-        <style>
-            @font-face {
-                font-family: 'Arial Rounded MT Bold';
-                src: url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.eot');
-                src: url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.eot?#iefix')
-                        format('embedded-opentype'),
-                    url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.woff2')
-                        format('woff2'),
-                    url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.woff')
-                        format('woff'),
-                    url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.ttf')
-                        format('truetype'),
-                    url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.svg#Arial Rounded MT Bold')
-                        format('svg');
-            }
-            body {
-                font-family: 'Arial Rounded MT Bold';
-                padding: 0px;
-                margin: 0px;
-                color: #4b4f60;
-            }
-            .logo {
-                z-index: 1;
-                position: absolute;
-                top: 3%;
-                left: 3%;
-            }
-            .container {
-                width: 90%;
-                margin: auto;
-                display: grid;
-            }
-            .container2 {
-                background-color: #f8f8f8;
-                margin: auto;
-            }
+
+<head>
+    <meta charset="utf-8" />
+    <title>🧪 rudiXlab - DevOps consulting Bulgaria</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+    <style>
+        @font-face {
+            font-family: 'Arial Rounded MT Bold';
+            src: url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.eot');
+            src: url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.eot?#iefix') format('embedded-opentype'),
+                url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.woff2') format('woff2'),
+                url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.woff') format('woff'),
+                url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.ttf') format('truetype'),
+                url('//db.onlinewebfonts.com/t/ef6bdf5ef216552c7e9869841e891ca0.svg#Arial Rounded MT Bold') format('svg');
+        }
+
+        body {
+            font-family: 'Arial Rounded MT Bold';
+            padding: 0px;
+            margin: 0px;
+            color: #4b4f60;
+        }
+
+        .logo {
+            z-index: 1;
+            position: absolute;
+            top: 3%;
+            left: 3%;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+        }
+
+        .container2 {
+            background-color: #f8f8f8;
+            margin: auto;
+        }
+
+        .iam {
+            font-size: 2.4rem;
+            width: 300px;
+        }
+
+        .right img {
+            max-width: 100%;
+        }
+
+        .cat {
+            width: 90px;
+            float: left;
+            padding: 10px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .cat img {
+            width: 100%;
+        }
+
+        .text {
+            font-size: 1.2rem;
+            line-height: 1.5rem;
+        }
+
+        .bottomwave {
+            width: 100%;
+        }
+
+        .content {
+            margin: auto;
+            text-shadow: 1px 1px 1px rgb(255, 255, 255);
+        }
+
+        .staticbottom {
+            position: fixed;
+            height: 20px;
+            width: 100%;
+            bottom: 0px;
+            background-color: #f8f8f8;
+        }
+
+        @media only screen and (max-width: 600px) {
             .iam {
-                font-size: 2.4rem;
-                width: 300px;
+                margin: auto;
+                text-align: center;
+                z-index: 1;
+                padding-top: 20px;
             }
-            .right img {
-                max-width: 100%;
+
+            .logo {
+                position: relative;
+                width: 94%;
+                text-align: center;
+                z-index: 1;
             }
-            .cat {
-                width: 90px;
-                float: left;
+
+            .content {
+                width: 90%;
+            }
+        }
+
+        @media only screen and (min-width: 600px) {
+            .iam {
+                padding-top: 15%;
+                padding-bottom: 35%;
+                float: right;
+                z-index: 1;
+            }
+
+            .right {
+                top: 10%;
+                position: absolute;
+                right: 0px;
+                width: 70%;
+                text-align: center;
+                z-index: 0;
+            }
+
+            .container2 p {
                 padding: 10px;
             }
-            .clear {
-                clear: both;
-            }
-            .cat img {
-                width: 100%;
-            }
-            .text {
-                font-size: 1.2rem;
-                line-height: 1.5rem;
-            }
-            .bottomwave {
-                width: 100%;
-            }
+
             .content {
-                margin: auto;
-                text-shadow: 1px 1px 1px rgb(255, 255, 255);
+                width: 70%;
             }
-            .staticbottom {
-                position: fixed;
-                height: 20px;
-                width: 100%;
-                bottom: 0px;
-                background-color: #f8f8f8;
+        }
+
+        @media only screen and (min-width: 900px) {
+            .iam {
+                padding-bottom: 30%;
             }
-            @media only screen and (max-width: 600px) {
-                .iam {
-                    margin: auto;
-                    text-align: center;
-                    z-index: 1;
-                    padding-top: 20px;
-                }
-                .logo {
-                    position: relative;
-                    width: 94%;
-                    text-align: center;
-                    z-index: 1;
-                }
-                .content {
-                    width: 90%;
-                }
+
+            .container {
+                width: 65%;
             }
-            @media only screen and (min-width: 600px) {
-                .iam {
-                    padding-top: 15%;
-                    padding-bottom: 35%;
-                    float: right;
-                    z-index: 1;
-                }
-                .right {
-                    top: 10%;
-                    position: absolute;
-                    right: 0px;
-                    width: 70%;
-                    text-align: center;
-                    z-index: 0;
-                }
-                .container2 p {
-                    padding: 10px;
-                }
-                .content {
-                    width: 70%;
-                }
+
+            .content {
+                width: 65%;
             }
-            @media only screen and (min-width: 900px) {
-                .iam {
-                    padding-bottom: 30%;
-                }
-                .container {
-                    width: 65%;
-                }
-                .content {
-                    width: 65%;
-                }
-            }
-            .jss179 {
-                color: #fff;
-                padding: 5px 12px;
-                display: inline-block;
-                font-size: 10px;
-                text-align: center;
-                font-weight: 500;
-                line-height: 1;
-                white-space: nowrap;
-                margin-right: 3px;
-                border-radius: 12px;
-                text-transform: uppercase;
-                vertical-align: baseline;
-                background-color: #9c27b0;
-                text-shadow: none;
-                margin: 3px;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <img
-                src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/top.svg"
-                alt="triangle with all three sides equal"
-                width="100%"
-            />
+        }
+
+        .jss179 {
+            color: #fff;
+            padding: 5px 12px;
+            display: inline-block;
+            font-size: 10px;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1;
+            white-space: nowrap;
+            margin-right: 3px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            vertical-align: baseline;
+            background-color: #9c27b0;
+            text-shadow: none;
+            margin: 3px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+    </style>
+    <script src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/cache/typewrite.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/top.svg"
+            alt="triangle with all three sides equal" width="100%" />
+    </div>
+    <div class="logo">
+        <img src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/rudiXlabs.png" alt="" />
+    </div>
+    <div class="container">
+        <div class="iam">
+            I am Creative<br />
+            & Minimalist<br />
+            FullStack DevOps<br />
         </div>
-        <div class="logo">
-            <img
-                src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/rudiXlabs.png"
-                alt=""
-            />
+        <div class="right">
+            <img src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/bubble.png" alt="" />
         </div>
-        <div class="container">
-            <div class="iam">
-                I am Creative<br />
-                & Minimalist<br />
-                FullStack DevOps<br />
+    </div>
+    <div class="container2">
+        <img class="bottomwave" src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/bottom.png" />
+        <div class="content">
+            <p></p>
+            <div class="cat">
+                <img src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/about.png" alt="" />
             </div>
-            <div class="right">
-                <img
-                    src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/bubble.png"
-                    alt=""
-                />
+            <h1>About</h1>
+            <div class="text">
+                <%- text %>
             </div>
-        </div>
-        <div class="container2">
-            <img
-                class="bottomwave"
-                src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/bottom.png"
-            />
-            <div class="content">
-                <p></p>
-                <div class="cat">
-                    <img
-                        src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/about.png"
-                        alt=""
-                    />
+            <div class="clear"></div>
+            <div class="cat">
+                <img src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/portfolio.png" alt="" />
+            </div>
+            <h1>Skills</h1>
+            <div class="clear"></div>
+            <span>
+                <div>
+                    <h2>Frontend</h2>
                 </div>
-                <h1>About</h1>
-                <div class="text">
-                    My name is Rudi. I am a full-stack JavaScript engineer
-                    specializing in React, Node.js, functional programming and
-                    serverless paradigms. I enjoy hacking on the latest tech and
-                    being automating workflows and processes. I am also
-                    passionate about mentoring, education and personal
-                    development in the workplace. I started Fresh Rudix Labs
-                    2010 under which I do development and consulting work, and I
-                    am actively involved in various other startups. When I’m not
-                    working, you can find me reading good books, watching great
-                    movies, geeking out over all things Star Wars.
+                <% skills.frontend.forEach(function(prop) { %>
+                <span class="jss179 jss180"><strong> <%- prop %> </strong></span>
+                <% }); %>
+
+                <div>
+                    <h2>Backend</h2>
                 </div>
-                <div class="clear"></div>
-                <div class="cat">
-                    <img
-                        src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/portfolio.png"
-                        alt=""
-                    />
-                </div>
-                <h1>Skills</h1>
-                <div class="clear"></div>
-                <span
-                    ><div><h2>Frontend</h2></div>
-                    <span class="jss179 jss180"
-                        ><strong> react native </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>react.js </strong></span
-                    ><span class="jss179 jss180"><strong>ES6 JS </strong></span
-                    ><span class="jss179 jss180"><strong>SASS </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>JADE/PUG </strong></span
-                    ><span class="jss179 jss180"><strong>SCSS </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>SKETCH MacOS </strong></span
-                    ><span class="jss179 jss180"><strong>HTML5 </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>Material UI </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>Bootstrap </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>Semantic UI </strong></span
-                    ><span class="jss179 jss180"><strong>gatsby </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>graphql </strong></span
-                    >
-                    <div><h2>Backend</h2></div>
-                    <span class="jss179 jss180"><strong>node.js </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>FEDORA OS </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>UBUNTU OS </strong></span
-                    ><span class="jss179 jss180"><strong>aws ec2 </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>aws lambda </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>aws dynamodb </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>aws api gateway </strong></span
-                    ><span class="jss179 jss180"><strong>aws s3 </strong></span
-                    ><span class="jss179 jss180"><strong>couchdb </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>firebase </strong></span
-                    ><span class="jss179 jss180"><strong>docker </strong></span
-                    ><span class="jss179 jss180"><strong>github </strong></span
-                    ><span class="jss179 jss180"><strong>gitlab </strong></span
-                    ><span class="jss179 jss180"><strong>netlify </strong></span
-                    ><span class="jss179 jss180"><strong>travis </strong></span
-                    ><span class="jss179 jss180"><strong>strapi </strong></span
-                    ><span class="jss179 jss180"
-                        ><strong>hasura </strong></span
-                    ></span
-                >
+                <% skills.backend.forEach(function(prop) { %>
+                <span class="jss179 jss180"><strong> <%- prop %> </strong></span>
+                <% }); %>
 
                 <div class="clear"></div>
 
                 <h1>Work</h1>
 
                 <div class="clear"></div>
-                <div>
-                    <div
-                        style="
-                            background-color: rgb(156, 39, 176);
-                            padding: 20px;
-                            color: rgb(255, 255, 255);
-                            margin-bottom: 20px;
-                            text-shadow: none;
-                        "
-                    >
-                        <span
-                            ><b>Facebook App Developer </b>
-                            <b style="float: right;">Ringful</b>
-                            <div style="font-size: 90%;">
-                                <i
-                                    class="material-icons"
-                                    style="font-size: 90%;"
-                                    > </i
-                                >2008 September<span style="float: right;"></span>
-                                    2008 December</span
-                                >
-                            </div>
-                            <div>
-                                <strong
-                                    >Facebook API integration, VOIP, Jboss
-                                </strong>
-                            </div></span
-                        >
-                    </div>
-                </div>
-                <div>
-                    <div
-                        style="
-                            background-color: rgb(156, 39, 176);
-                            padding: 20px;
-                            color: rgb(255, 255, 255);
-                            margin-bottom: 20px;
-                            text-shadow: none;
-                        "
-                    >
-                        <span
-                            ><b>Senior Web Developer </b>
-                            <b style="float: right;"> Agency Venera</b>
-                            <div style="font-size: 90%;">
-                                <i
-                                    class="material-icons"
-                                    style="font-size: 90%;"
-                                    > </i
-                                >2008 November<span style="float: right;">
-                                    2009 June</span
-                                >
-                            </div>
-                            <div>
-                                <strong
-                                    >At SOAP I was required to carry out full
-                                    stack duties across a broad range of
-                                    projects including php/MySQL with front end
-                                    technologies ranging from html/css to
-                                    Flash.</strong
-                                >
-                            </div></span
-                        >
-                    </div>
-                </div>
-                <div>
-                    <div
-                        style="
-                            background-color: rgb(156, 39, 176);
-                            padding: 20px;
-                            color: rgb(255, 255, 255);
-                            margin-bottom: 20px;
-                            text-shadow: none;
-                        "
-                    >
-                        <span
-                            ><b>Print Design tourist Newspaper </b>
-                            <b style="float: right;"> Ballerman am Balkan</b>
-                            <div style="font-size: 90%;">
-                                <i
-                                    class="material-icons"
-                                    style="font-size: 90%;"
-                                    > </i
-                                >2009 December<span style="float: right;">
-                                    2010 April</span
-                                >
-                            </div>
-                            <div>
-                                <strong
-                                    >Responsible for the brand weekly newspaper
-                                    design, PHP website</strong
-                                >
-                            </div></span
-                        >
-                    </div>
-                </div>
 
-                <div>
-                    <div
-                        style="
+                <% jobs.forEach(function(prop) { %> <div>
+                    <div style="
                             background-color: rgb(156, 39, 176);
                             padding: 20px;
                             color: rgb(255, 255, 255);
                             margin-bottom: 20px;
                             text-shadow: none;
-                        "
-                    >
-                        <span
-                            ><b>Web Developer </b>
-                            <b style="float: right;"> Golgstrand Reisen</b>
+                        ">
+                        <span><b><%- prop.title %> </b>
+                            <b style="float: right;"> <%- prop.co %></b>
                             <div style="font-size: 90%;">
-                                <i
-                                    class="material-icons"
-                                    style="font-size: 90%;"
-                                    > </i
-                                >2012 July<span style="float: right;">
-                                    2013 September</span
-                                >
+                                <i class="material-icons" style="font-size: 90%;"> </i><%- prop.date.from %> <span
+                                    style="float: right;">
+                                    <%- prop.date.to %></span>
                             </div>
                             <div>
-                                <strong
-                                    >Gathering data Organizing and structuring
-                                    the plan Translating all related
-                                    documents</strong
-                                >
-                            </div></span
-                        >
-                    </div>
-                </div>
-                <div>
-                    <div
-                        style="
-                            background-color: rgb(156, 39, 176);
-                            padding: 20px;
-                            color: rgb(255, 255, 255);
-                            margin-bottom: 20px;
-                            text-shadow: none;
-                        "
-                    >
-                        <span
-                            ><b>FullStack Cloud Consultant </b>
-                            <b style="float: right;"> dMedia Bulgaria</b>
-                            <div style="font-size: 90%;">
-                                <i
-                                    class="material-icons"
-                                    style="font-size: 90%;"
-                                    > </i
-                                >2013 September<span style="float: right;">
-                                    2015 September</span
-                                >
+                                <strong><%- prop.description %></strong>
                             </div>
-                            <div><strong> </strong></div
-                        ></span>
+                        </span>
                     </div>
-                </div>
+                </div> <% }); %>
+
+
                 <div class="cat">
-                    <img
-                        src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/contact.png"
-                        alt=""
-                    />
+                    <img src="https://s3.eu-central-1.amazonaws.com/img.rudixlab.com/public/contact.png" alt="" />
                 </div>
                 <h1>Contact</h1>
                 rudix.lab@gmail.com <br />
                 +359876358115
                 <div class="clear"></div>
                 <p></p>
-            </div>
         </div>
-        <div class="staticbottom"></div>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-29127191-2"
-        ></script>
-        <script>
-            window.dataLayer = window.dataLayer || []
-            function gtag() {
-                dataLayer.push(arguments)
-            }
-            gtag('js', new Date())
+    </div>
+    <div class="staticbottom"></div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>$(document).ready(function () {
+            $('.iam').typewrite({
+                actions: [
+                    { type: 'I am Creative ' },
+ 
+                    { delay: 500 },
+                    { remove: { num: 9 } },
 
-            gtag('config', 'UA-29127191-2')
-        </script>
-    </body>
+                    { delay: 500 },
+
+                    { type: 'Minimalist' },
+                     { delay: 500 },
+                    { remove: { num: 10 } },
+                   
+                    { type: 'Performance freak' },
+                    { delay: 500 },
+                    { remove: { num: 17 } },
+               
+                    
+                    { type: 'Full Stack DevOps' }
+                ]
+            });
+        });</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-29127191-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || []
+        function gtag() {
+            dataLayer.push(arguments)
+        }
+        gtag('js', new Date())
+
+        gtag('config', 'UA-29127191-2')
+    </script>
+</body>
+
 </html>

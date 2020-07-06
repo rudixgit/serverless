@@ -6,10 +6,23 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <title><%- id %> Public Twitter Info</title>
+        <title>👤 <%- id %></title>
+        <meta
+            name="description"
+            content=" <% tags.forEach(function(prop) { %> <%- prop.replace('#','') %>, <% }); %>"
+        />
+        <meta
+            name="keywords"
+            content="<%- id %>, <% tags.forEach(function(prop) { %> <%- prop.replace('#','') %>, <% }); %>"
+        />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            href="http://example.com/myicon.png"
         />
         <style>
             @font-face {
@@ -37,21 +50,30 @@
                 padding: 0px;
                 margin: 0px;
                 color: #fff;
-                background-color: #2d3436;
+                background-color: #<%-user.profile_background_color%>;
             }
             a {
                 color: #fff;
             }
             .header {
-                background-color: #a29bfe;
                 padding: 10px;
                 color: #fff;
-                height: 100px;
-                background-color: #636e72;
+                max-height: 300px;
+                overflow: hidden;
+                background: url(<%-user.profile_banner_url%>) no-repeat center
+                    center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                text-shadow: 2px 2px #020202;
+                border: 5px solid #<%-user.profile_background_color%>;
+                border-radius: 5px;
             }
             .header img {
                 float: left;
                 border-radius: 50px;
+                margin: 10px;
             }
             pre {
                 max-height: 200px;
@@ -76,10 +98,25 @@
                 margin: 5px;
                 background-color: #636e72;
                 border-radius: 3px;
+                font-size: 70%;
+                box-shadow: 0 0 0 1px #fff;
             }
             .tag a {
                 text-decoration: none;
-                font-size: 70%;
+            }
+            .clear {
+                clear: both;
+            }
+            .container2 {
+                text-align: center;
+            }
+            .button {
+                padding: 5px;
+                margin: 5px;
+                color: #636e72;
+                text-decoration: none;
+                border-radius: 3px;
+                background-color: #fff;
             }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -87,22 +124,34 @@
     </head>
     <body>
         <div class="header">
-            <img src="http://twivatar.glitch.me/<%- id %>" width="100"
+            <img src="<%- user.profile_image_url_https %>" width="100"
             height"100" />
             <h1><%- id %></h1>
+            <p><%- user.description %></p>
         </div>
         <div class="container">
+            <p class="container2">
+                <a href="#ex1" rel="modal:open" class="button">Tweets</a>
+                <a href="#ex1" rel="modal:open" class="button">Photos</a>
+                <a href="#tags" rel="modal:open" class="button">Tags</a>
+            </p>
+
             <div id="ex1" class="modal">
-                <p>Thanks for clicking. That felt good.</p>
-                <a href="#" rel="modal:close">Close</a>
+                <h2>Tweets</h2>
+                <% tweets.forEach(function(prop) { %>
+                <div class="tweet"><%- prop.text %></div>
+                <% }); %>
+            </div>
+            <div id="tags" class="modal">
+                <h2>Tags</h2>
+                <% tags.forEach(function(prop) { %>
+                <div class="tag">
+                    <%- prop %>
+                </div>
+                <% }); %>
             </div>
 
-            <!-- Link to open the modal -->
-            <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
-            <h2>Tweets</h2>
-            <% tweets.forEach(function(prop) { %>
-            <div class="tweet"><%- prop.text %></div>
-            <% }); %>
+            <div class="clear"></div>
             <h2>Similar Usernames</h2>
             <% Items.forEach(function(prop) { %>
             <div class="tag">
@@ -120,7 +169,6 @@
                 dataLayer.push(arguments)
             }
             gtag('js', new Date())
-
             gtag('config', 'UA-29127191-2')
         </script>
     </body>

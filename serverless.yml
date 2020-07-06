@@ -39,6 +39,7 @@ functions:
     app:
         handler: server.handler
         memorySize: 512
+        disableLogs: true
         events:
             - http: ANY /
             - http: 'ANY {proxy+}'
