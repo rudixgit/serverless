@@ -17,7 +17,7 @@ const { timeline, readFile, writeFile } = require('./src/twitter.js')
 
 app.use(async function (req, res, next) {
     const json = {
-        path: req.path,
+        path: 'https://rudixlab.com' + req.path,
         t: new Date(),
         ua: req.headers['user-agent'],
     }
