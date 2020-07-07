@@ -85,6 +85,7 @@ app.get('/s3/*', async (req, res) => {
 app.get('/t/:time/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { time, id } = req.params
+
     const data = await query({
         id: Math.round(time),
         collection: 't',
@@ -99,7 +100,6 @@ app.get('/t/:time/:id', async (req, res) => {
               profile_image_url_https: 'http://twivatar.glitch.me/' + id,
               profile_background_color: 'black',
           }
-    console.log(user)
 
     const tags = tweets[0]
         ? tweets
