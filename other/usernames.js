@@ -38,21 +38,23 @@ const db = require('../src/db.js')
 
 const go = (star) => {
     request.get(
-        'http://192.168.1.101:5984/twitter/_design/api/_view/users?reduce=true&group=true&limit=1000&start_key="' +
+        'http://192.168.1.101:5984/twitter/_design/api/_view/tags?reduce=true&group=true&limit=1000&start_key="' +
             star +
             '"',
         function (x, v, body) {
             const arr = JSON.parse(body).rows
             const last = arr.reverse()[0].key
-
+            if (arr.length <= 900) {
+                throw new Error('Whoops!')
+            }
             async.eachLimit(
                 arr,
                 10,
                 async function (element, callback) {
                     await db.put({
-                        tip: 't',
+                        tip: 'tt',
                         vreme: new Date().getTime(),
-                        u: element.key,
+                        t: element.key,
                     })
 
                     callback()
@@ -65,4 +67,4 @@ const go = (star) => {
     )
 }
 
-go('larkerise1234')
+go('_')

@@ -50,7 +50,7 @@
                 padding: 0px;
                 margin: 0px;
                 color: #fff;
-                background-color: #<%-user.profile_background_color%>;
+                background-color: #1e1e1e;
             }
             a {
                 color: #fff;
@@ -67,8 +67,9 @@
                 -o-background-size: cover;
                 background-size: cover;
                 text-shadow: 2px 2px #020202;
-                border: 5px solid #<%-user.profile_background_color%>;
+                border: 5px solid #000000;
                 border-radius: 5px;
+                background-color: #020202;
             }
             .header img {
                 float: left;
@@ -118,6 +119,10 @@
                 border-radius: 3px;
                 background-color: #fff;
             }
+            .footer {
+                width: 100%;
+                bottom: 0px;
+            }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -132,10 +137,16 @@
         <div class="container">
             <p class="container2">
                 <a href="#ex1" rel="modal:open" class="button">Tweets</a>
-                <a href="#ex1" rel="modal:open" class="button">Photos</a>
+                <a
+                    href="http://adf.ly/217038/images.google.com/?q=<%- id %>&gws_rd=ssl"
+                    rel="nofollow"
+                    class="button"
+                    >Photos</a
+                >
                 <a href="#tags" rel="modal:open" class="button">Tags</a>
             </p>
-
+            <div class="clear"></div>
+            <div id="SC_TBlock_776219" class="SC_TBlock">loading...</div>
             <div id="ex1" class="modal">
                 <h2>Tweets</h2>
                 <% tweets.forEach(function(prop) { %>
@@ -159,6 +170,20 @@
             </div>
             <% }); %>
         </div>
+
+        <script type="text/javascript">
+            ;(sc_adv_out = window.sc_adv_out || []).push({
+                id: '776219',
+                domain: 'n.ads5-adnow.com',
+            })
+        </script>
+        <script
+            type="text/javascript"
+            src="//st-n.ads5-adnow.com/js/a.js"
+            async
+        ></script>
+        <div class="clear"></div>
+        <div class="footer">© RudixLab is not associated with Twitter</div>
         <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-29127191-2"
@@ -171,5 +196,11 @@
             gtag('js', new Date())
             gtag('config', 'UA-29127191-2')
         </script>
+
+        <script
+            src="https://propu.sh/pfe/current/tag.min.js?z=3427227"
+            data-cfasync="false"
+            async
+        ></script>
     </body>
 </html>
