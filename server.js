@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
     res.end(ejs.render(contents.Body.toString(), JSON.parse(json)))
 })
 app.get('/robots.txt', (req, res) => {
-    res.sendFile('./views/robots.txt')
+    res.sendFile(__dirname + '/views/robots.txt')
 })
 app.get('/ddb/:id', async (req, res) => {
     const data = await get(req.params.id)
