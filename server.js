@@ -50,10 +50,10 @@ app.get('/log', async (req, res) => {
     const contents = await readFile('/tmp/log.txt')
     res.end('[' + contents + ']')
 })
-app.get('/sitemap', async function (req, res) {
+app.get('/sitemap/', async function (req, res) {
     res.header('Content-Type', 'text/plain')
     const data = await query({
-        id: 1,
+        id: Math.round(req.query.id || 1),
         collection: 't',
         limit: 50000,
         descending: true,
