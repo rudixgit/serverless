@@ -38,6 +38,9 @@ app.get('/', async (req, res) => {
 
     res.end(ejs.render(contents.Body.toString(), JSON.parse(json)))
 })
+app.get('/robots.txt', (req, res) => {
+    res.sendFile('./views/robots.txt')
+})
 app.get('/ddb/:id', async (req, res) => {
     const data = await get(req.params.id)
     res.json(data)
@@ -66,6 +69,7 @@ app.get('/sitemap/', async function (req, res) {
         ).join('\n')
     )
 })
+
 app.get('/i/:id', async (req, res) => {
     const ua = req.headers['user-agent'] || ''
     if (isBot(ua)) {
