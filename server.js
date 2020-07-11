@@ -56,7 +56,7 @@ app.get('/sitemap', async function (req, res) {
         id: 1,
         collection: 't',
         limit: 50000,
-        descending: false,
+        descending: true,
     })
 
     res.end(
