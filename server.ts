@@ -8,18 +8,7 @@ const app = express()
 const compression = require('compression')
 const jwt = require('jsonwebtoken')
 const accessTokenSecret = 'youraccesstokensecret'
-const users = [
-    {
-        username: '1',
-        password: '1',
-        role: 'admin',
-    },
-    {
-        username: 'anna',
-        password: 'password123member',
-        role: 'member',
-    },
-]
+
 app.use(compression())
 app.use(bodyParser.json())
 app.use(express.static('public'))
@@ -90,7 +79,6 @@ app.get('/sitemap/', async function (req, res) {
 app.get('/i/:id', async (req, res) => {
     const ua = req.headers['user-agent'] || ''
     if (isBot(ua)) {
-        await downloadFile(req.params.id)
         res.sendFile('/tmp/test.jpg')
     } else {
         res.render('kartinki', { id: req.params.id })
@@ -169,32 +157,6 @@ app.get('/:appid/:id', async (req, res) => {
     const data = await get(id)
     const contents = await getS3('views/' + appid + '.html')
     res.end(ejs.render(contents.Body.toString(), { ...data, ...req.query }))
-})
-
-app.post('/login', (req, res) => {
-    // read username and password from request body
-    const { username, password } = req.body
-    console.log(req.body)
-
-    // filter user from the users array by username and password
-    const user = users.find((u) => {
-        return u.username === username && u.password === password
-    })
-
-    if (user) {
-        // generate an access token
-        const accessToken = jwt.sign(
-            { username: user.username, role: user.role },
-            accessTokenSecret,
-            { expiresIn: '20m' }
-        )
-
-        res.json({
-            accessToken,
-        })
-    } else {
-        res.json({})
-    }
 })
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
