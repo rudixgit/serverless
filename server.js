@@ -42,7 +42,7 @@ app.get("/robots.txt", (req, res) => {
   res.sendFile(__dirname + "/views/robots.txt");
 });
 
-app.get("/db/", async (req, res) => {
+app.post("/db/", async (req, res) => {
   const data = await query(req.body);
   res.json(data);
 });
