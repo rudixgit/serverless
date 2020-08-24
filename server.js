@@ -42,11 +42,11 @@ app.get("/robots.txt", (req, res) => {
   res.sendFile(__dirname + "/views/robots.txt");
 });
 
-app.get("/ddb/:id", async (req, res) => {
-  const data = await get(req.params.id);
+app.get("/db/", async (req, res) => {
+  const data = await query(req.body);
   res.json(data);
 });
-app.post("/ddb/", async (req, res) => {
+app.post("/dbput/", async (req, res) => {
   const data = await put(req.body);
   res.json(data);
 });
