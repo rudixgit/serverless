@@ -6,12 +6,11 @@ const isBot = require("isbot-fast");
 const ejs = require("ejs");
 const app = express();
 const compression = require("compression");
-const jwt = require("jsonwebtoken");
-const accessTokenSecret = "youraccesstokensecret";
+var cors = require("cors");
 
 app.use(compression());
+app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public"));
 
 const { get, put, query } = require("./src/db.js");
 const { getS3 } = require("./src/s3.js");
@@ -149,7 +148,14 @@ app.get("/:colid/:time/:id", async (req, res) => {
 app.get("/:appid/:id", async (req, res) => {
   res.header("Content-Type", "text/html");
   const { appid, id } = req.params;
-  const data = await get(id);
+
+  const data = await query({
+    id: Math.round(id),
+    collection: appid,
+    limit: 10,
+    descending: true,
+  });
+  console.log(data);
   const contents = await getS3("views/" + appid + ".html");
   res.end(ejs.render(contents.Body.toString(), { ...data, ...req.query }));
 });
