@@ -50,7 +50,23 @@ function put(json, callback) {
     });
   });
 }
-async function query({ id, collection, limit, descending, count, attributes }) {
+async function test({ title, attributes, collection }) {
+  var params = {
+    TableName: "ddb",
+    KeyConditionExpression: "tip = :hkey  and vreme >= :zkey",
+    FilterExpression: "title = :ukey",
+    ExpressionAttributeValues: {
+      ":zkey": 1,
+      ":hkey": "newsbg",
+      ":ukey": title,
+    },
+  };
+  db.query(params, function (err, data) {
+    console.log(data, err);
+  });
+}
+
+async function query({ id, collection, limit, descending, count, fields }) {
   var params = {
     TableName: "ddb",
     KeyConditionExpression: "tip = :hkey and vreme >= :ukey",
@@ -59,18 +75,18 @@ async function query({ id, collection, limit, descending, count, attributes }) {
       ":ukey": id ? id : 1,
     },
     Limit: limit,
-    ScanIndexForward: descending,
+    Skip: 1,
+    ScanIndexForward: descending ? descending : true,
     ReturnConsumedCapacity: "TOTAL",
   };
-  if (attributes) {
-    params.ProjectionExpression = attributes;
+  if (fields) {
+    params.ProjectionExpression = fields;
   }
   if (count) {
     params.Select = "COUNT";
   }
   return new Promise((resolve) => {
     db.query(params, function (err, data) {
-      console.log(err);
       resolve(data);
     });
   });
