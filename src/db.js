@@ -50,19 +50,31 @@ function put(json, callback) {
     });
   });
 }
-async function test({ title, attributes, collection }) {
+
+async function q1({ query, fields, collection, descending, limit }) {
   var params = {
     TableName: "ddb",
     KeyConditionExpression: "tip = :hkey  and vreme >= :zkey",
-    FilterExpression: "title = :ukey",
+    FilterExpression: Object.keys(query)[0] + " = :ukey",
     ExpressionAttributeValues: {
       ":zkey": 1,
-      ":hkey": "newsbg",
-      ":ukey": title,
+      ":hkey": collection,
+      ":ukey": Object.values(query)[0],
     },
+    Limit: limit ? limit : 100,
+    ScanIndexForward: descending ? descending : true,
+    ReturnConsumedCapacity: "TOTAL",
   };
-  db.query(params, function (err, data) {
-    console.log(data, err);
+  if (fields) {
+    params.ProjectionExpression = fields;
+  }
+  return new Promise((resolve, reject) => {
+    db.query(params, function (err, data) {
+      if (data.Count === 1) {
+        resolve(data.Items[0]);
+      }
+      resolve(data);
+    });
   });
 }
 
@@ -72,11 +84,10 @@ async function query({ id, collection, limit, descending, count, fields }) {
     KeyConditionExpression: "tip = :hkey and vreme >= :ukey",
     ExpressionAttributeValues: {
       ":hkey": collection,
-      ":ukey": id ? id : 1,
+      ":ukey": id || 1,
     },
-    Limit: limit,
-    Skip: 1,
-    ScanIndexForward: descending ? descending : true,
+    Limit: limit || 100,
+    ScanIndexForward: descending || false,
     ReturnConsumedCapacity: "TOTAL",
   };
   if (fields) {
@@ -87,9 +98,12 @@ async function query({ id, collection, limit, descending, count, fields }) {
   }
   return new Promise((resolve) => {
     db.query(params, function (err, data) {
+      if (data.Count === 1) {
+        resolve(data.Items[0]);
+      }
       resolve(data);
     });
   });
 }
 
-module.exports = { get, put, query };
+module.exports = { get, put, query, q1 };

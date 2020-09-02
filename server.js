@@ -12,7 +12,7 @@ app.use(compression());
 app.use(cors());
 app.use(bodyParser.json());
 
-const { get, put, query } = require("./src/db.js");
+const { get, put, query, q1 } = require("./src/db.js");
 const { getS3 } = require("./src/s3.js");
 const { timeline, readFile, writeFile } = require("./src/twitter.js");
 
@@ -39,6 +39,10 @@ app.get("/", async (req, res) => {
 });
 app.get("/robots.txt", (req, res) => {
   res.sendFile(__dirname + "/views/robots.txt");
+});
+app.post("/db/q1", async (req, res) => {
+  const data = await q1(req.body);
+  res.json(data);
 });
 
 app.post("/db/", async (req, res) => {
