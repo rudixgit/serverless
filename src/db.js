@@ -61,8 +61,8 @@ async function q1({ query, fields, collection, descending, limit }) {
       ":hkey": collection,
       ":ukey": Object.values(query)[0],
     },
-    Limit: limit ? limit : 100,
-    ScanIndexForward: descending ? descending : true,
+    Limit: limit || 100,
+    ScanIndexForward: descending || true,
     ReturnConsumedCapacity: "TOTAL",
   };
   if (fields) {
