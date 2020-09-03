@@ -90,7 +90,6 @@ app.get("/s3/*", async (req, res) => {
 });
 
 app.get("/t/:time/:id", async (req, res) => {
-  res.header("Content-Type", "text/html");
   const { time, id } = req.params;
 
   const data = await query({
@@ -119,16 +118,22 @@ app.get("/t/:time/:id", async (req, res) => {
     : [];
 
   const contents = await getS3("views/t.html");
-  res.end(
-    ejs.render(contents.Body.toString(), {
-      ...data,
-      tweets,
-      user,
-      tags,
-      //tweets_stringified: JSON.stringify(tweets, null, 4),
-      ...req.params,
-    })
-  );
+  console.log(req.query);
+  const jsonOutput = {
+    ...data,
+    tweets,
+    user,
+    tags,
+    //tweets_stringified: JSON.stringify(tweets, null, 4),
+    ...req.params,
+  };
+  if (req.query.format) {
+    res.header("Content-Type", "application/json");
+    res.json(jsonOutput);
+  } else {
+    res.header("Content-Type", "text/html");
+    res.end(ejs.render(contents.Body.toString(), jsonOutput));
+  }
 });
 app.get("/:colid/:time/:id", async (req, res) => {
   res.header("Content-Type", "text/html");
