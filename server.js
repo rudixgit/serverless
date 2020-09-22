@@ -6,7 +6,6 @@ const isBot = require("isbot-fast");
 const ejs = require("ejs");
 const app = express();
 const ig = require("instagram-scraping");
-
 const compression = require("compression");
 var cors = require("cors");
 
