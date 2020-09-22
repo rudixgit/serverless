@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const isBot = require("isbot-fast");
 const ejs = require("ejs");
 const app = express();
+const ig = require("instagram-scraping");
+
 const compression = require("compression");
 var cors = require("cors");
 
@@ -71,6 +73,16 @@ app.get("/sitemap/", async function (req, res) {
       (item) => "https://rudixlab.com/t/" + item.vreme + "/" + item.u + "/"
     ).join("\n")
   );
+});
+app.get("/insta/:id", (req, res) => {
+  ig.scrapeTag(req.params.id)
+    .then((result) => {
+      res.json({ medias: result.medias.slice(0, 10) });
+    })
+    .catch((e) => {
+      console.log(e);
+      res.json({});
+    });
 });
 
 app.get("/i/:id", async (req, res) => {
