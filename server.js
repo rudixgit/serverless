@@ -79,7 +79,6 @@ app.get("/insta/:id", (req, res) => {
       res.json({ medias: result.medias.slice(0, 10) });
     })
     .catch((e) => {
-      console.log(e);
       res.json({});
     });
 });
@@ -109,6 +108,7 @@ app.get("/t/:time/:id", async (req, res) => {
     limit: 10,
     descending: true,
   });
+
   const tweets = await timeline(id);
 
   const user = tweets[0]
@@ -129,8 +129,9 @@ app.get("/t/:time/:id", async (req, res) => {
     : [];
 
   const contents = await getS3("views/t.html");
-  console.log(req.query);
+
   const jsonOutput = {
+    Items: [],
     ...data,
     tweets,
     user,
@@ -175,14 +176,13 @@ app.get("/:appid/:id", async (req, res) => {
     limit: 10,
     descending: true,
   });
-  console.log(data);
+
   const contents = await getS3("views/" + appid + ".html");
   res.end(ejs.render(contents.Body.toString(), { ...data, ...req.query }));
 });
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
   app.listen(process.env.PORT || 3000);
-  console.log("working on localhost");
 }
 //dsdsdsdsaddsadsadasdas
 module.exports.handler = serverless(app);
