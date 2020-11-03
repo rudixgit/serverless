@@ -69,7 +69,7 @@ const getS3 = (id) => {
 const getFS = (id) => {
   return new Promise((resolve) => {
     fs.readFile(id, (err, data) => {
-      resolve(err ? "" : { Body: data.toString() });
+      resolve(err ? "" : { Body: data });
     });
   });
 };
