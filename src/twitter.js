@@ -1,6 +1,5 @@
 const Twitter = require("twitter");
 const fs = require("fs");
-const ig = require("instagram-scraping");
 
 const client = new Twitter({
   consumer_key: process.env.consumer_key,
@@ -10,7 +9,7 @@ const client = new Twitter({
 });
 
 function readFile(path) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     fs.readFile(path, "utf8", function (err, data) {
       if (err) {
         resolve(null);
@@ -20,7 +19,7 @@ function readFile(path) {
   });
 }
 function writeFile(path, contents) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     fs.writeFile(path, contents, "utf8", function (err, data) {
       if (err) {
         resolve(null);
@@ -53,10 +52,5 @@ const timeline = async (id) => {
     }
   });
 };
-const instaTimeline = (id) => {
-  ig.scrapeUserPage(id).then((result) => {
-    console.dir(result);
-  });
-};
 
-module.exports = { timeline, instaTimeline, readFile, writeFile };
+module.exports = { timeline, readFile, writeFile };
