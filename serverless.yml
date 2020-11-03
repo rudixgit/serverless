@@ -1,8 +1,6 @@
 app: rudixlab
 
 service: rudix
-plugins:
-  - serverless-domain-manager
 provider:
   name: aws
   runtime: nodejs12.x
@@ -29,12 +27,6 @@ provider:
         - s3:ListBucket
       Resource:
         - "arn:aws:s3:::*"
-custom:
-  customDomain:
-    domainName: novina.rudixlab.com
-    basePath: ""
-    stage: ${self:provider.stage}
-    createRoute53Record: true
 functions:
   app:
     handler: server.handler
