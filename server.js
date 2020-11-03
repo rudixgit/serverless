@@ -2,31 +2,31 @@ require("dotenv").config();
 const serverless = require("serverless-http");
 const express = require("express");
 const bodyParser = require("body-parser");
-const isBot = require("isbot-fast");
 const ejs = require("ejs");
+
 const app = express();
-const ig = require("instagram-scraping");
+
 const compression = require("compression");
-var cors = require("cors");
+const cors = require("cors");
 
 app.use(compression());
 app.use(cors());
 app.use(bodyParser.json());
 
-const { get, put, query, q1 } = require("./src/db.js");
+const { put, query, q1 } = require("./src/db.js");
 const { getS3 } = require("./src/s3.js");
 const { timeline, readFile, writeFile } = require("./src/twitter.js");
 
 app.use(async function (req, res, next) {
   const json = {
-    path: "https://rudixlab.com" + req.path,
+    path: `https://rudixlab.com${req.path}`,
     t: new Date(),
     ua: req.headers["user-agent"],
   };
   const prev = await readFile("/tmp/log.txt");
   await writeFile(
     "/tmp/log.txt",
-    prev ? "\n" + JSON.stringify(json) + "," + prev + "" : JSON.stringify(json)
+    prev ? `\n${JSON.stringify(json)},${prev}` : JSON.stringify(json)
   );
   next();
 });
@@ -39,7 +39,7 @@ app.get("/", async (req, res) => {
   res.end(ejs.render(contents.Body.toString(), JSON.parse(json)));
 });
 app.get("/robots.txt", (req, res) => {
-  res.sendFile(__dirname + "/views/robots.txt");
+  res.sendFile(`${__dirname}/views/robots.txt`);
 });
 app.post("/db/q1", async (req, res) => {
   const data = await q1(req.body);
@@ -56,7 +56,7 @@ app.post("/dbput/", async (req, res) => {
 });
 app.get("/log", async (req, res) => {
   const contents = await readFile("/tmp/log.txt");
-  res.end("[" + contents + "]");
+  res.end(`[${contents}]`);
 });
 app.get("/sitemap/", async function (req, res) {
   res.header("Content-Type", "text/plain");
@@ -69,28 +69,9 @@ app.get("/sitemap/", async function (req, res) {
 
   res.end(
     data.Items.map(
-      (item) => "https://rudixlab.com/t/" + item.vreme + "/" + item.u + "/"
+      (item) => `https://rudixlab.com/t/${item.vreme}/${item.u}/`
     ).join("\n")
   );
-});
-app.get("/insta/:id", (req, res) => {
-  ig.scrapeTag(req.params.id)
-    .then((result) => {
-      res.json({ medias: result.medias.slice(0, 10) });
-    })
-    .catch((e) => {
-      res.json({});
-    });
-});
-
-app.get("/i/:id", async (req, res) => {
-  const ua = req.headers["user-agent"] || "";
-  if (isBot(ua)) {
-    await downloadFile(req.params.id);
-    res.sendFile("/tmp/test.jpg");
-  } else {
-    res.render("kartinki", { id: req.params.id });
-  }
 });
 
 app.get("/s3/*", async (req, res) => {
@@ -114,7 +95,7 @@ app.get("/t/:time/:id", async (req, res) => {
   const user = tweets[0]
     ? tweets[0].user
     : {
-        profile_image_url_https: "http://twivatar.glitch.me/" + id,
+        profile_image_url_https: `http://twivatar.glitch.me/${id}`,
         profile_background_color: "black",
       };
 
@@ -136,7 +117,7 @@ app.get("/t/:time/:id", async (req, res) => {
     tweets,
     user,
     tags,
-    //tweets_stringified: JSON.stringify(tweets, null, 4),
+    // tweets_stringified: JSON.stringify(tweets, null, 4),
     ...req.params,
   };
   if (req.query.format) {
@@ -149,7 +130,7 @@ app.get("/t/:time/:id", async (req, res) => {
 });
 app.get("/:colid/:time/:id", async (req, res) => {
   res.header("Content-Type", "text/html");
-  const { time, id, colid } = req.params;
+  const { time, colid } = req.params;
 
   const data = await query({
     id: Math.round(time),
@@ -157,7 +138,7 @@ app.get("/:colid/:time/:id", async (req, res) => {
     limit: 10,
     descending: true,
   });
-  const contents = await getS3("views/" + colid + ".html");
+  const contents = await getS3(`views/${colid}.html`);
 
   res.end(
     ejs.render(contents.Body.toString(), {
@@ -177,12 +158,12 @@ app.get("/:appid/:id", async (req, res) => {
     descending: true,
   });
 
-  const contents = await getS3("views/" + appid + ".html");
+  const contents = await getS3(`views/${appid}.html`);
   res.end(ejs.render(contents.Body.toString(), { ...data, ...req.query }));
 });
 
 if (!process.env.LAMBDA_RUNTIME_DIR) {
   app.listen(process.env.PORT || 3000);
 }
-//dsdsdsdsaddsadsadasdas
+// dsdsdsdsaddsadsadasdas
 module.exports.handler = serverless(app);

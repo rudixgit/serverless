@@ -1,31 +1,36 @@
 {
-    "name": "my-function",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "aws-sdk": "^2.745.0",
-        "body-parser": "^1.19.0",
-        "compression": "^1.7.4",
-        "cors": "^2.8.5",
-        "dotenv": "^8.2.0",
-        "ejs": "^3.1.5",
-        "express": "^4.17.1",
-        "instagram-scraping": "^1.0.13",
-        "isbot-fast": "^1.2.0",
-        "jsonwebtoken": "^8.5.1",
-        "lodash": "^4.17.20",
-        "md5": "^2.3.0",
-        "nano": "^8.2.2",
-        "request": "^2.88.2",
-        "serverless-http": "^2.5.0",
-        "slugify": "^1.4.5",
-        "twitter": "^1.7.1"
-    },
-    "devDependencies": {
-        "serverless-domain-manager": "^4.2.0"
-    }
+  "name": "my-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.745.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "isbot-fast": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "md5": "^2.3.0",
+    "nano": "^8.2.2",
+    "request": "^2.88.2",
+    "serverless-http": "^2.5.0",
+    "slugify": "^1.4.5",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "serverless-domain-manager": "^4.2.0"
+  }
 }

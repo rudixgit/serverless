@@ -1,37 +1,45 @@
 app: rudixlab
 
 service: rudix
+plugins:
+  - serverless-domain-manager
 provider:
-    name: aws
-    runtime: nodejs12.x
-    stage: dev
-    region: eu-central-1
-    timeout: 10
-    disableLogs: true
-    iamRoleStatements:
-        - Effect: Allow
-          Action:
-              - dynamodb:DescribeTable
-              - dynamodb:Query
-              - dynamodb:Scan
-              - dynamodb:GetItem
-              - dynamodb:PutItem
-              - dynamodb:UpdateItem
-              - dynamodb:DeleteItem
-          Resource:
-              - arn:aws:dynamodb:eu-central-1:*:*
-        - Effect: Allow
-          Action:
-              - s3:PutObject
-              - s3:GetObject
-              - s3:ListBucket
-          Resource:
-              - 'arn:aws:s3:::*'
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-central-1
+  timeout: 10
+  disableLogs: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - arn:aws:dynamodb:eu-central-1:*:*
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+        - s3:ListBucket
+      Resource:
+        - "arn:aws:s3:::*"
+custom:
+  customDomain:
+    domainName: novina.rudixlab.com
+    basePath: ""
+    stage: ${self:provider.stage}
+    createRoute53Record: true
 functions:
-    app:
-        handler: server.handler
-        memorySize: 512
-        disableLogs: true
-        events:
-            - http: ANY /
-            - http: 'ANY {proxy+}'
+  app:
+    handler: server.handler
+    memorySize: 512
+    disableLogs: true
+    events:
+      - http: ANY /
+      - http: "ANY {proxy+}"
