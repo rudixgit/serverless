@@ -10,7 +10,7 @@ const client = new Twitter({
 
 function readFile(path) {
   return new Promise((resolve) => {
-    fs.readFile(path, "utf8", function (err, data) {
+    fs.readFile(path, "utf8", (err, data) => {
       if (err) {
         resolve(null);
       }
@@ -20,7 +20,7 @@ function readFile(path) {
 }
 function writeFile(path, contents) {
   return new Promise((resolve) => {
-    fs.writeFile(path, contents, "utf8", function (err, data) {
+    fs.writeFile(path, contents, "utf8", (err, data) => {
       if (err) {
         resolve(null);
       }
@@ -30,25 +30,24 @@ function writeFile(path, contents) {
 }
 
 const timeline = async (id) => {
-  const cached = await readFile("/tmp/" + id);
+  const cached = await readFile(`/tmp/${id}`);
   return new Promise((resolve) => {
     if (cached) {
       resolve(JSON.parse(cached));
     } else {
-      client.get("statuses/user_timeline", { screen_name: id }, function (
-        error,
-        tweets,
-        response
-      ) {
-        console.log(error);
-        if (!error) {
-          fs.writeFile("/tmp/" + id, JSON.stringify(tweets), function () {
-            resolve(tweets);
-          });
-        } else {
-          resolve([]);
+      client.get(
+        "statuses/user_timeline",
+        { screen_name: id },
+        (error, tweets) => {
+          if (!error) {
+            fs.writeFile(`/tmp/${id}`, JSON.stringify(tweets), () => {
+              resolve(tweets);
+            });
+          } else {
+            resolve([]);
+          }
         }
-      });
+      );
     }
   });
 };
