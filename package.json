@@ -6,6 +6,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "15.x"
+  },
   "dependencies": {
     "aws-sdk": "^2.745.0",
     "body-parser": "^1.19.0",

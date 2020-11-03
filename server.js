@@ -17,7 +17,7 @@ const { put, query, q1 } = require("./src/db.js");
 const { getS3 } = require("./src/s3.js");
 const { timeline, readFile, writeFile } = require("./src/twitter.js");
 
-app.use(async function (req, res, next) {
+app.use(async (req, res, next) => {
   const json = {
     path: `https://rudixlab.com${req.path}`,
     t: new Date(),
@@ -58,7 +58,7 @@ app.get("/log", async (req, res) => {
   const contents = await readFile("/tmp/log.txt");
   res.end(`[${contents}]`);
 });
-app.get("/sitemap/", async function (req, res) {
+app.get("/sitemap/", async (req, res) => {
   res.header("Content-Type", "text/plain");
   const data = await query({
     id: Math.round(req.query.id || 1),
