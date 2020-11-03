@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const { put, query, q1 } = require("./src/db.js");
-const { getS3 } = require("./src/s3.js");
+const { getS3, getFS } = require("./src/s3.js");
 const { timeline, readFile, writeFile } = require("./src/twitter.js");
 
 app.use(async (req, res, next) => {
@@ -33,7 +33,7 @@ app.use(async (req, res, next) => {
 app.get("/", async (req, res) => {
   res.header("Content-Type", "text/html");
 
-  const contents = await getS3("views/rudix.html");
+  const contents = await getFS("./views/rudix.html");
   const json = await readFile("./views/rudix.json");
 
   res.end(ejs.render(contents.Body.toString(), JSON.parse(json)));
@@ -109,7 +109,7 @@ app.get("/t/:time/:id", async (req, res) => {
         })
     : [];
 
-  const contents = await getS3("views/t.html");
+  const contents = await getFS("views/t.html");
 
   const jsonOutput = {
     Items: [],
@@ -138,7 +138,7 @@ app.get("/:colid/:time/:id", async (req, res) => {
     limit: 10,
     descending: true,
   });
-  const contents = await getS3(`views/${colid}.html`);
+  const contents = await getFS(`views/${colid}.html`);
 
   res.end(
     ejs.render(contents.Body.toString(), {
@@ -158,7 +158,7 @@ app.get("/:appid/:id", async (req, res) => {
     descending: true,
   });
 
-  const contents = await getS3(`views/${appid}.html`);
+  const contents = await getFS(`views/${appid}.html`);
   res.end(ejs.render(contents.Body.toString(), { ...data, ...req.query }));
 });
 

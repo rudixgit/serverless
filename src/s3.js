@@ -66,5 +66,12 @@ const getS3 = (id) => {
     });
   });
 };
+const getFS = (id) => {
+  return new Promise((resolve) => {
+    fs.readFile(id, (err, data) => {
+      resolve(err ? "" : { Body: data.toString() });
+    });
+  });
+};
 
-module.exports = { uploadFile, downloadFile, getS3 };
+module.exports = { uploadFile, downloadFile, getS3, getFS };

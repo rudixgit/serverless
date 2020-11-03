@@ -1,226 +1,218 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>👤 <%- id %></title>
-    <meta
-      name="description"
-      content=" <% tags.forEach(function(prop) { %> <%- prop.replace('#','') %>, <% }); %>"
-    />
-    <meta
-      name="keywords"
-      content="<%- id %>, <% tags.forEach(function(prop) { %> <%- prop.replace('#','') %>, <% }); %>"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-    />
-    <link rel="icon" type="image/png" href="http://example.com/myicon.png" />
-    <style>
-      @font-face {
-        font-family: "DINNextRoundedLTW01-Bold";
-        src: url("//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.eot");
-        src: url("//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.eot?#iefix")
-            format("embedded-opentype"),
-          url("//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.woff2")
-            format("woff2"),
-          url("//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.woff")
-            format("woff"),
-          url("//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.ttf")
-            format("truetype"),
-          url("//db.onlinewebfonts.com/t/d778c9af6f0c7bfb6f10d9e34e71a43f.svg#DINNextRoundedLTW01-Bold")
-            format("svg");
-      }
-      h1 {
-        color: #00cec9;
-      }
-      h2 {
-        color: #ff7675;
-      }
-      body {
-        font-family: "DINNextRoundedLTW01-Bold";
-        padding: 0px;
-        margin: 0px;
-        color: #fff;
-        background-color: #1e1e1e;
-      }
-      a {
-        color: #fff;
-      }
-      .header {
-        padding: 10px;
-        color: #fff;
-        max-height: 300px;
-        overflow: hidden;
-        background: url(<%-user.profile_banner_url%>) no-repeat center center
-          fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        text-shadow: 2px 2px #020202;
-        border: 5px solid #000000;
-        border-radius: 5px;
-        background-color: #020202;
-      }
-      .header img {
-        float: left;
-        border-radius: 50px;
-        margin: 10px;
-      }
-      pre {
-        max-height: 200px;
-        overflow: auto;
-      }
-      .container {
-        width: 90%;
-        margin: auto;
-      }
-      .tweet {
-        border-radius: 4px;
-        background-color: #636e72;
-        padding: 4px;
-        margin: 5px;
-      }
-      .modal {
-        background-color: #636e72;
-      }
-      .tag {
-        float: left;
-        padding: 4px;
-        margin: 5px;
-        background-color: #636e72;
-        border-radius: 3px;
-        font-size: 70%;
-        box-shadow: 0 0 0 1px #fff;
-      }
-      .tag a {
-        text-decoration: none;
-      }
-      .clear {
-        clear: both;
-      }
-      .container2 {
-        text-align: center;
-      }
-      .button {
-        padding: 5px;
-        margin: 5px;
-        color: #636e72;
-        text-decoration: none;
-        border-radius: 3px;
-        background-color: #fff;
-      }
-      .footer {
-        width: 100%;
-        bottom: 0px;
-      }
-      .artboard {
-        width: 100%;
-        min-width: 548px;
-        height: 100vh;
-        min-height: 667px;
-        position: relative;
-        overflow: hidden;
-        margin: 0;
-        opacity: 1;
-      }
-      .artboard img {
-        background-color: rgba(255, 255, 255, 0);
-        position: absolute;
-        top: -1px;
-        right: 0;
-        margin: 0;
-        height: 100%;
-        transform: rotate(0);
-        opacity: 1;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-  </head>
-  <body>
-    <div class="header">
-      <img src="<%- user.profile_image_url_https %>" width="100" height"100" />
-      <h1><%- id %></h1>
-      <p><%- user.description %></p>
-    </div>
-    <div class="container">
-      <p class="container2">
-        <a href="#ex1" rel="modal:open" class="button">Tweets</a>
-        <a
-          href="http://adf.ly/217038/images.google.com/?q=<%- id %>&gws_rd=ssl"
-          rel="nofollow"
-          class="button"
-          >Photos</a
-        >
-        <a href="#tags" rel="modal:open" class="button">Tags</a>
-      </p>
-      <div class="clear"></div>
-      <div id="SC_TBlock_776219" class="SC_TBlock">loading...</div>
-      <div id="ex1" class="modal">
-        <h2>Tweets</h2>
-        <% tweets.forEach(function(prop) { %>
-        <div class="tweet"><%- prop.text %></div>
-        <% }); %>
-      </div>
-      <div id="tags" class="modal">
-        <h2>Tags</h2>
-        <% tags.forEach(function(prop) { %>
-        <div class="tag">
-          <%- prop %>
-        </div>
-        <% }); %>
-      </div>
 
-      <div class="clear"></div>
-      <h2>Similar Usernames</h2>
-      <% Items.forEach(function(prop) { %>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>👤 <%- id %></title>
+  <meta name="description" content=" <% tags.forEach(function(prop) { %> <%- prop.replace('#','') %>, <% }); %>" />
+  <meta name="keywords"
+    content="<%- id %>, <% tags.forEach(function(prop) { %> <%- prop.replace('#','') %>, <% }); %>" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+  <link rel="icon" type="image/png" href="http://example.com/myicon.png" />
+  <style>
+    h1 {
+      color: #00cec9;
+    }
+
+    h2 {
+      color: #ff7675;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      padding: 0px;
+      margin: 0px;
+      color: #fff;
+      background-color: #1e1e1e;
+    }
+
+    a {
+      color: #fff;
+    }
+
+    .header {
+      padding: 10px;
+      color: #fff;
+      max-height: 300px;
+      overflow: hidden;
+      background: url(<%-user.profile_banner_url%>) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      text-shadow: 2px 2px #020202;
+      border: 5px solid #000000;
+      border-radius: 5px;
+      background-color: #020202;
+    }
+
+    .header img {
+      float: left;
+      border-radius: 50px;
+      margin: 10px;
+    }
+
+    pre {
+      max-height: 200px;
+      overflow: auto;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+    }
+
+    .tweet {
+      border-radius: 4px;
+      background-color: #636e72;
+      padding: 4px;
+      margin: 5px;
+    }
+
+    .modal {
+      background-color: #636e72;
+    }
+
+    .tag {
+      float: left;
+      padding: 4px;
+      margin: 5px;
+      background-color: #636e72;
+      border-radius: 3px;
+      font-size: 70%;
+      box-shadow: 0 0 0 1px #fff;
+    }
+
+    .tag a {
+      text-decoration: none;
+    }
+
+    .clear {
+      clear: both;
+    }
+
+    .container2 {
+      text-align: center;
+    }
+
+    .button {
+      padding: 5px;
+      margin: 5px;
+      color: #636e72;
+      text-decoration: none;
+      border-radius: 3px;
+      background-color: #fff;
+    }
+
+    .footer {
+      width: 100%;
+      bottom: 0px;
+    }
+
+    .artboard {
+      width: 100%;
+      min-width: 548px;
+      height: 100vh;
+      min-height: 667px;
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      opacity: 1;
+    }
+
+    .artboard img {
+      background-color: rgba(255, 255, 255, 0);
+      position: absolute;
+      top: -1px;
+      right: 0;
+      margin: 0;
+      height: 100%;
+      transform: rotate(0);
+      opacity: 1;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <img src="<%- user.profile_image_url_https %>" width="100" height"100" />
+    <h1><%- id %></h1>
+    <p><%- user.description %></p>
+  </div>
+  <div class="container">
+    <p class="container2">
+      <a href="#ex1" rel="modal:open" class="button">Tweets</a>
+      <a href="http://adf.ly/217038/images.google.com/?q=<%- id %>&gws_rd=ssl" rel="nofollow" class="button">Photos</a>
+      <a href="#tags" rel="modal:open" class="button">Tags</a>
+    </p>
+    <div class="clear"></div>
+    <div id="SC_TBlock_776219" class="SC_TBlock">loading...</div>
+    <div id="ex1" class="modal">
+      <h2>Tweets</h2>
+      <% tweets.forEach(function(prop) { %>
+      <div class="tweet"><%- prop.text %></div>
+      <% }); %>
+    </div>
+    <div id="tags" class="modal">
+      <h2>Tags</h2>
+      <% tags.forEach(function(prop) { %>
       <div class="tag">
-        <a href="/t/<%- prop.vreme %>/<%- prop.u %>/"><%- prop.u %></a>
+        <%- prop %>
       </div>
       <% }); %>
     </div>
 
-    <script type="text/javascript">
-      (sc_adv_out = window.sc_adv_out || []).push({
-        id: "776219",
-        domain: "n.ads5-adnow.com",
-      });
-    </script>
-    <script
-      type="text/javascript"
-      src="//st-n.ads5-adnow.com/js/a.js"
-      async
-    ></script>
     <div class="clear"></div>
-    <div class="footer">© RudixLab is not associated with Twitter</div>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-29127191-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "UA-29127191-2");
-    </script>
+    <h2>Similar Usernames</h2>
+    <% Items.forEach(function(prop) { %>
+    <div class="tag">
+      <a href="/t/<%- prop.vreme %>/<%- prop.u %>/"><%- prop.u %></a>
+    </div>
+    <% }); %>
+  </div>
 
-    <script>
-      (function (s, u, z, p) {
-        (s.src = u), s.setAttribute("data-zone", z), p.appendChild(s);
-      })(
-        document.createElement("script"),
-        "https://iclickcdn.com/tag.min.js",
-        3427209,
-        document.body || document.documentElement
-      );
-    </script>
-  </body>
+  <div>
+    <div class="clear"></div>
+    <h2>Links</h2><a href="https://duh.netlify.com" style="margin-left: 15px;">Blog</a><a href="https://arpecop.xyz"
+      style="margin-left: 15px;">Вицове</a><a href="https://freeteenpicsandmovies.netlify.app"
+      style="margin-left: 15px;">Free teen pics</a><a href="https://rudixlab.com" style="margin-left: 15px;">DevOps
+      Bulgaria</a><a href="https://novinata.netlify.app/" style="margin-left: 15px;">Новини</a><a
+      href="https://news.rudixlab.com/" style="margin-left: 15px;">Новини 2</a><a href="https://bigblog.netlify.app/"
+      style="margin-left: 15px;">Big Blog</a><a href="https://arpecop.gitlab.io/izteglisi/"
+      style="margin-left: 15px;">Izteglisi</a>
+  </div>
+  <script type="text/javascript">
+    (sc_adv_out = window.sc_adv_out || []).push({
+      id: "776219",
+      domain: "n.ads5-adnow.com",
+    });
+  </script>
+  <script type="text/javascript" src="//st-n.ads5-adnow.com/js/a.js" async></script>
+  <div class="clear"></div>
+  <div class="footer">© RudixLab is not associated with Twitter</div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-29127191-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "UA-29127191-2");
+  </script>
+
+  <script>
+    (function (s, u, z, p) {
+      (s.src = u), s.setAttribute("data-zone", z), p.appendChild(s);
+    })(
+      document.createElement("script"),
+      "https://iclickcdn.com/tag.min.js",
+      3427209,
+      document.body || document.documentElement
+    );
+  </script>
+</body>
+
 </html>
