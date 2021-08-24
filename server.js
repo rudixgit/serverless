@@ -157,7 +157,7 @@ if (cluster.isPrimary) {
     const contents = await getFS(`views/${colid}.html`)
 
     res.end(
-      ejs.render(contents.Body.toString(), {
+      ejs.render(contents.Body ? contents.Body.toString() : '404', {
         ...data,
         ...req.params
       })
