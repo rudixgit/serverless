@@ -45,7 +45,6 @@
             },
             "description": "Facebook API integration, VOIP, Jboss  "
         },
-
         {
             "title": "Senior Web Developer, ",
             "co": " Agency Venera",
@@ -55,7 +54,6 @@
             },
             "description": "At SOAP I was required to carry out full stack duties across a broad range of projects including php/MySQL with front end technologies ranging from html/css to Flash."
         },
-
         {
             "title": "Print Design tourist Newspaper, ",
             "co": "Ballerman am Balkan",
@@ -65,7 +63,6 @@
             },
             "description": "Responsible for the brand   weekly newspaper design, PHP website"
         },
-
         {
             "title": "Web Developer, ",
             "co": "Golgstrand Reisen",
@@ -83,6 +80,15 @@
                 "to": "2015 September"
             },
             "description": " "
+        },
+        {
+            "title": "FullStack DevOps Engineer, ",
+            "co": "dMedia Bulgaria",
+            "date": {
+                "from": "2021 September",
+                "to": "2022 March"
+            },
+            "description": "Worked on 2 different cross-platform mobile applications , Web3 application involving NFT's and smart contracts. Traveling to Israel. Techs/Stack involved: AWS , react,react-native, Next.JS ,PHP,Docker"
         }
     ]
 }
