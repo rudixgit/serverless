@@ -163,7 +163,8 @@ if (cluster.isPrimary) {
       })
     )
   })
-  app.get('/:appid/:id', async (req, res) => {
+  // remove x
+  app.get('/:appid/x/:id', async (req, res) => {
     res.header('Content-Type', 'text/html')
     const { appid, id } = req.params
 
